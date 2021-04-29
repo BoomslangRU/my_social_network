@@ -1,0 +1,16 @@
+.app-wrapper {
+  display: grid;
+  margin: 10px auto;
+  width: 1200px;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 160px 1fr;
+  grid-template-areas:
+   'header header'
+   'nav profile';
+  gap: 10px;
+}
+
+.app-wrapper-content {
+    grid-area: profile;
+    background-color: azure;
+}
