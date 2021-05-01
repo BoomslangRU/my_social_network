@@ -7,14 +7,16 @@
     padding: 20px 30px;
 }
 
-.dialog {
+.dialogItem a {
+    color: rgb(21, 78, 75);
+    text-decoration: none;
+}
 
+.dialogItem a.activeLink {
+    color: rgb(77, 153, 153);
+    font-size: 1.2em;
 }
 
 .messages {
     padding: 20px;
-}
-
-.message {
-
 }
