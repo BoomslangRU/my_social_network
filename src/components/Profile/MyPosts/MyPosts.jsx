@@ -1,6 +1,13 @@
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
 
+let posts = [
+  { message: 'Hi, how are you?', likeCounter: 12 },
+  { message: 'It\'s my first post', likeCounter: 15 }
+]
+
+let postsElements = posts.map(p => <Post message={p.message} likeCounter={p.likeCounter} />)
+
 const MyPosts = () => {
   return (
     <div className={s.item}>
@@ -13,8 +20,7 @@ const MyPosts = () => {
           <button>Add Post</button>
         </div>
       </div >
-      <Post message='Hi, how are you?' likeCounter='12' />
-      <Post message="It's my first post" likeCounter='15' />
+      {postsElements}
     </div>
   )
 }
