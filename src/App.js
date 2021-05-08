@@ -1,5 +1,4 @@
 import { Route } from 'react-router'
-import { BrowserRouter } from 'react-router-dom'
 import './App.css'
 import Dialogs from './components/Dialogs/Dialogs'
 import Header from './components/Header/Header'
@@ -11,7 +10,7 @@ import Setting from './components/Setting/Setting'
 
 
 const App = (props) => {
-  return <BrowserRouter>
+  return (
     <div className='app-wrapper'>
       <Header />
       <Nav />
@@ -23,7 +22,7 @@ const App = (props) => {
         <Route path='/setting' render={() => <Setting />} />
       </div>
     </div>
-  </BrowserRouter>
+  )
 }
 
 export default App
