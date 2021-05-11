@@ -1,4 +1,6 @@
-import { renderEntireTree } from '../render'
+let renderEntireTree = () => {
+    console.log('State changed')
+}
 
 let state = {
     profilePage: {
@@ -27,20 +29,26 @@ let state = {
 
 }
 
-export let addPost = () => {
+window.state = state   //temporarily
+
+export const addPost = () => {
     let newPost = {
         id: 5,
         message: state.profilePage.newPostText,
         likeCounter: 0
     }
     state.profilePage.posts.push(newPost)
-    renderEntireTree(state)
+    renderEntireTree()
     state.profilePage.newPostText = ''
 }
 
-export let updateNewPostText = (newText) => {
+export const updateNewPostText = (newText) => {
     state.profilePage.newPostText = newText
-    renderEntireTree(state)
+    renderEntireTree()
+}
+
+export const subscribe = (observer) => {
+    renderEntireTree = observer   // pattern observer 
 }
 
 export default state
