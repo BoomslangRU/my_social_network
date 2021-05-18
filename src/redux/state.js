@@ -7,7 +7,7 @@ let store = {
             ],
             newPostText: ''
         },
-    
+
         dialogsPage: {
             dialogs: [
                 { id: 'id1', name: 'Alexander' },
@@ -23,7 +23,7 @@ let store = {
                 { id: 3, message: 'Yo' }
             ]
         }
-    
+
     },
     getState() {
         return this._state
@@ -31,7 +31,7 @@ let store = {
     _callSubscriber() {
         console.log('State changed')
     },
-    addPost() {
+    _addPost() {
         let newPost = {
             id: 5,
             message: this._state.profilePage.newPostText,
@@ -41,12 +41,19 @@ let store = {
         this._callSubscriber()
         this._state.profilePage.newPostText = ''
     },
-    updateNewPostText(newText) {
+    _updateNewPostText(newText) {
         this._state.profilePage.newPostText = newText
         this._callSubscriber()
     },
     subscribe(observer) {
         this._callSubscriber = observer   // pattern observer 
+    },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            this._addPost()
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._updateNewPostText(action.newText)
+        }
     }
 }
 
