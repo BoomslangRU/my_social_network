@@ -1,6 +1,10 @@
 const ADD_POST = 'ADD_POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
 
+const SEND_MESSAGE = 'SEND_MESSAGE'
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
+
+
 let store = {
     _state: {
         profilePage: {
@@ -24,7 +28,8 @@ let store = {
                 { id: 1, message: 'Hi' },
                 { id: 2, message: 'How are you' },
                 { id: 3, message: 'Yo' }
-            ]
+            ],
+            newMessageBody: ''
         }
 
     },
@@ -41,12 +46,22 @@ let store = {
             likeCounter: 0
         }
         this._state.profilePage.posts.push(newPost)
-        this._callSubscriber()
+        this._callSubscriber(this._state)
         this._state.profilePage.newPostText = ''
     },
     _updateNewPostText(newText) {
         this._state.profilePage.newPostText = newText
-        this._callSubscriber()
+        this._callSubscriber(this._state)
+    },
+    _addMessage() {
+        let body = this._state.dialogsPage.newMessageBody
+        this._state.dialogsPage.messages.push({ id: 6, messages: body })
+        this._callSubscriber(this._state)
+        this._state.dialogsPage.newMessageBody = ''
+    },
+    _updateNewMessageText(newText) {
+        this._state.dialogsPage.newMessageBody = newText
+        this._callSubscriber(this._state)
     },
     subscribe(observer) {
         this._callSubscriber = observer   // pattern observer 
@@ -56,15 +71,25 @@ let store = {
             this._addPost()
         } else if (action.type === 'UPDATE_NEW_POST_TEXT') {
             this._updateNewPostText(action.newText)
+        } else if (action.type === 'UPDATE_NEW_MESSAGE_BODY') {
+            this._updateNewMessageText(action.body)
+        } else if (action.type === 'SEND_MESSAGE') {
+            this._addMessage()
         }
     }
 }
 
 export const addPostActionCreation = () => ({ type: ADD_POST })
-
-export const updateNewPostTextActionCreation = (text) => ({ 
-    type: UPDATE_NEW_POST_TEXT, newText: text 
+export const updateNewPostTextActionCreation = (text) => ({
+    type: UPDATE_NEW_POST_TEXT, newText: text
 })
+
+export const sendMessageCreator = () => ({ type: SEND_MESSAGE })
+export const updateNewMessageBodyCreation = (text) => ({
+    type: UPDATE_NEW_MESSAGE_BODY, body: text
+})
+
+
 
 export default store
 

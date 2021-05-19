@@ -17,7 +17,7 @@ const MyPosts = (props) => {
     let text = newPostElement.current.value
     props.dispatch(updateNewPostTextActionCreation(text))
   }
-
+  
   return (
     <div className={s.item}>
       <h3>My posts</h3>
