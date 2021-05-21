@@ -55,7 +55,7 @@ let store = {
     },
     _addMessage() {
         let body = this._state.dialogsPage.newMessageBody
-        this._state.dialogsPage.messages.push({ id: 6, messages: body })
+        this._state.dialogsPage.messages.push({ id: 6, message: body })
         this._callSubscriber(this._state)
         this._state.dialogsPage.newMessageBody = ''
     },
