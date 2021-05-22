@@ -1,6 +1,6 @@
 import { Route } from 'react-router'
 import './App.css'
-import Dialogs from './components/Dialogs/Dialogs'
+import DialogsContainer from './components/Dialogs/DialogsContainer'
 import Header from './components/Header/Header'
 import Music from './components/Music/Music'
 import Nav from './components/Nav/Nav'
@@ -16,11 +16,9 @@ const App = (props) => {
       <Nav />
       <div className='app-wrapper-content'>
         <Route path='/profile' render={() => <Profile
-          profilePage={props.state.profilePage}
-          dispatch={props.dispatch} />} />
-        <Route path='/dialogs' render={() => <Dialogs
-          dialogsPage={props.state.dialogsPage}
-          dispatch={props.dispatch} />} />
+          store={props.store} />} />
+        <Route path='/dialogs' render={() => <DialogsContainer
+          store={props.store} />} />
         <Route path='/news' render={() => <News />} />
         <Route path='/music' render={() => <Music />} />
         <Route path='/setting' render={() => <Setting />} />
