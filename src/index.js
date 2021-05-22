@@ -5,10 +5,10 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
 
-export let renderEntireTree = (state) => {
+export let renderEntireTree = () => {
   ReactDOM.render(
     <BrowserRouter>
-      <App state={state} dispatch={store.dispatch.bind(store)} store={store} />
+      <App store={store} />
     </BrowserRouter>,
     document.getElementById('root'))
 }
