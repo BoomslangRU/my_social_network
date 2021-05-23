@@ -9,16 +9,14 @@ import Profile from './components/Profile/Profile'
 import Setting from './components/Setting/Setting'
 
 
-const App = (props) => {
+const App = () => {
   return (
     <div className='app-wrapper'>
       <Header />
       <Nav />
       <div className='app-wrapper-content'>
-        <Route path='/profile' render={() => <Profile
-          store={props.store} />} />
-        <Route path='/dialogs' render={() => <DialogsContainer
-          store={props.store} />} />
+        <Route path='/profile' render={() => <Profile />} />
+        <Route path='/dialogs' render={() => <DialogsContainer />} />
         <Route path='/news' render={() => <News />} />
         <Route path='/music' render={() => <Music />} />
         <Route path='/setting' render={() => <Setting />} />
