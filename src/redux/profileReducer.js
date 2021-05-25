@@ -18,8 +18,7 @@ const profileReducer = (state = initialState, action) => {
                 likeCounter: 0
             }
             let stateCopy = { ...state }
-            stateCopy.posts = { ...state.posts }
-            debugger
+            stateCopy.posts = [...state.posts]
             stateCopy.posts.push(newPost)
             stateCopy.newPostText = ''
             return stateCopy
