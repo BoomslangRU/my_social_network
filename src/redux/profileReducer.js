@@ -11,24 +11,22 @@ const initialState = {
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case (ADD_POST): {
+        case (ADD_POST):
             let newPost = {
                 id: 5,
                 message: state.newPostText,
                 likeCounter: 0
             }
-            let stateCopy = { ...state }
-            stateCopy.posts = [...state.posts]
-            stateCopy.posts.push(newPost)
-            stateCopy.newPostText = ''
-            return stateCopy
-        }
-        case (UPDATE_NEW_POST_TEXT): {
-            let stateCopy = { ...state }
-            stateCopy.newPostText = { ...state.newPostText }
-            stateCopy.newPostText = action.newText
-            return stateCopy
-        }
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPostText: ''
+            }
+        case (UPDATE_NEW_POST_TEXT):
+            return ({                //VS Code throws an error if without parentheses
+                ...state,
+                newPostText: action.newText
+            })
         default:
             return state
     }
