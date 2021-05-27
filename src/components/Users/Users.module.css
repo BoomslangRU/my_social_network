@@ -1,0 +1,26 @@
+.usersItem {
+    display: grid;
+    grid-template-rows: 180px 1fr;
+    grid-template-columns: 150px 1fr;
+    grid-template-areas:
+    'avatar info location';
+    gap: 10px;
+}
+
+.avatarItem {
+    grid-area: avatar;
+}
+
+.infoItem {
+    grid-area: info;
+}
+
+.locationItem {
+    grid-area: location;
+}
+
+
+.image {
+    width: 100px;
+    height: 130px;
+}
