@@ -5,6 +5,9 @@
     'avatar info location';
     gap: 10px;
     color: rgb(21, 78, 75);
+    background-color: rgb(101, 192, 196);
+    margin-bottom: 7px;
+    border-radius: 10px;
 }
 
 .avatarItem {
@@ -19,16 +22,18 @@
 
 .locationItem {
     grid-area: location;
+    padding-top: 10px;
 }
 
 .name {
     font-size: 1.4em;
-    padding-top: 30px;
+    padding-top: 40px;
 }
 
 .image {
     width: 100px;
     height: 130px;
+    border-radius: 10px;
 }
 
 .buttonItem {
@@ -38,6 +43,6 @@
 .button_follow {
     background-color: rgb(231, 108, 108);
     color: lightcyan;
-    opacity: 0.6;
+    opacity: 0.8;
     cursor: not-allowed;
 }
