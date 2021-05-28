@@ -1,26 +1,43 @@
 .usersItem {
     display: grid;
-    grid-template-rows: 180px 1fr;
-    grid-template-columns: 150px 1fr;
+    grid-template-columns: 100px 1fr 100px;
     grid-template-areas:
     'avatar info location';
     gap: 10px;
+    color: rgb(21, 78, 75);
 }
 
 .avatarItem {
     grid-area: avatar;
+    padding-bottom: 10px;
 }
 
 .infoItem {
     grid-area: info;
+    margin-left: 50px;
 }
 
 .locationItem {
     grid-area: location;
 }
 
+.name {
+    font-size: 1.4em;
+    padding-top: 30px;
+}
 
 .image {
     width: 100px;
     height: 130px;
+}
+
+.buttonItem {
+    text-align: center;
+}
+
+.button_follow {
+    background-color: rgb(231, 108, 108);
+    color: lightcyan;
+    opacity: 0.6;
+    cursor: not-allowed;
 }

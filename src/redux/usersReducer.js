@@ -3,14 +3,7 @@ const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 
 let initialState = {
-    users: [
-        { id: 1, photoUrl: 'https://www.kino-teatr.ru/acter/photo/9/6/285169/824299.jpg', 
-        followed: true, fullName: 'Alexander', status: 'I am a BOSS', location: { city: 'Moscow', country: 'Russia' } },
-        { id: 2, photoUrl: 'https://vsefz.ru/wp-content/uploads/2019/06/ASem-4.jpg', 
-        followed: true, fullName: 'Anna', status: 'I am a BOSS too', location: { city: 'Moscow', country: 'Russia' } },
-        { id: 3, photoUrl: 'https://mir-s3-cdn-cf.behance.net/project_modules/fs/5718a873638623.5c101d92c0531.jpg', 
-        followed: false, fullName: 'Ivan', status: 'I am a little BOSS', location: { city: 'Bryansk', country: 'Russia' } }
-    ]
+    users: []
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -19,7 +12,7 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: state.users.map(u => {
-                    if (u.id === action.userID) {
+                    if (u.id === action.userId) {
                         return { ...u, followed: true }
                     }
                     return u
@@ -29,7 +22,7 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: state.users.map(u => {
-                    if (u.id === action.userID) {
+                    if (u.id === action.userId) {
                         return { ...u, followed: false }
                     }
                     return u
@@ -42,8 +35,8 @@ const usersReducer = (state = initialState, action) => {
     }
 }
 
-export const followAC = (userID) => ({ type: FOLLOW, userID })
-export const unfollowAC = (userID) => ({ type: UNFOLLOW, userID })
-export const setUsersAC = (user) => ({ type: SET_USERS, user })
+export const followAC = (userId) => ({ type: FOLLOW, userId })
+export const unfollowAC = (userId) => ({ type: UNFOLLOW, userId })
+export const setUsersAC = (users) => ({ type: SET_USERS, users })
 
 export default usersReducer
