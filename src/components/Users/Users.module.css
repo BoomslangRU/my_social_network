@@ -46,3 +46,8 @@
     opacity: 0.8;
     cursor: not-allowed;
 }
+
+.selectedPage {
+    color: rgb(77, 153, 153);
+    font-size: 1.2em;
+}
