@@ -12,7 +12,6 @@ let mapStateToProps = (state) => {
 }
 
 let mapDispatchToProps = (dispatch) => {
-    debugger
     return {
         follow: (userId) => {
             dispatch(followAC(userId))

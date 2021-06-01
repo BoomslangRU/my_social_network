@@ -48,6 +48,10 @@
 }
 
 .selectedPage {
+    text-align: center;
+}
+
+.activeSelectedPage {
     color: rgb(77, 153, 153);
-    font-size: 1.2em;
+    font-size: 1.3em;
 }
