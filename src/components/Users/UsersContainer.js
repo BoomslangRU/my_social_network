@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { followAC, setCurrentPageAC, setUsersAC, setUsersTotalCountAC, unfollowAC } from '../../redux/usersReducer'
+import { followAC, setCurrentPageAC, setUsersAC, setUsersTotalCountAC, toggleIsFetchingAC, unfollowAC } from '../../redux/usersReducer'
 import UsersAPIComponent from './UsersAPIComponent'
 
 let mapStateToProps = (state) => {
@@ -7,7 +7,8 @@ let mapStateToProps = (state) => {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage
+        currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching
     }
 }
 
@@ -27,6 +28,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         setTotalUsersCount: (totalCount) => {
             dispatch(setUsersTotalCountAC(totalCount))
+        },
+        toggleIsFetching: (isFetching) => {
+            dispatch(toggleIsFetchingAC(isFetching))
         }
     }
 }
