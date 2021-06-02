@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { followAC, setCurrentPageAC, setUsersAC, setUsersTotalCountAC, unfollowAC } from '../../redux/usersReducer'
-import Users from './Users'
+import UsersAPIComponent from './UsersAPIComponent'
 
 let mapStateToProps = (state) => {
     return {
@@ -31,4 +31,4 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users)
+export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent)
