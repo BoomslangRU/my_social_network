@@ -6,3 +6,19 @@
 .header img {
     width: 56px;
 }
+
+.loginBlock {
+    float: right;
+    margin: 15px;
+    font-size: 1.2em;
+}
+
+.loginBlock a {
+    color: rgb(21, 78, 75);
+    text-decoration: none;
+}
+  
+.loginBlock a.activeLink {
+    color: rgb(77, 153, 153);
+    font-size: 1.4em;
+}
