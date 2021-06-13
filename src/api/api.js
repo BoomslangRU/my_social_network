@@ -37,3 +37,10 @@ export const getProfile = (userId) => {
             return response.data
         })
 }
+
+export const getAuthMe = () => {
+    return instance.get(`auth/me`)
+        .then(response => {
+            return response.data
+        })
+}
