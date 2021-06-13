@@ -43,24 +43,31 @@ const Users = (props) => {
                     </NavLink>
                     <div className={s.buttonItem}>
                         {u.followed ?
-                            <button className={s.button_follow} onClick={() => {
+                            <button disabled={props.followingInProgress.some(id => id === u.id)} className={s.button_follow} onClick={() => {
+                                props.toggleFollowingProgress(true, u.id)
                                 followUsers(u.id)
                                     .then(data => {
                                         if (data.resultCode === 0) {
                                             props.unfollow(u.id)
                                         }
+                                        props.toggleFollowingProgress(false, u.id)
                                     })
+                                // .catch (props.toggleFollowingProgress(false)) 
                             }} > Unfollow</button>
 
-                            : <button onClick={() => {
-                                unfollowUsers(u.id)
-                                    .then(data => {
-                                        if (data.resultCode === 0) {
-                                            props.follow(u.id)
-                                        }
-                                    })
-                                props.follow(u.id)
-                            }}>Follow</button>}
+                            : <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                onClick={() => {
+                                    props.toggleFollowingProgress(true, u.id)
+                                    unfollowUsers(u.id)
+                                        .then(data => {
+                                            if (data.resultCode === 0) {
+                                                props.follow(u.id)
+                                            }
+                                            props.toggleFollowingProgress(false, u.id)
+                                        })
+                                    // .catch (props.toggleFollowingProgress(false))
+                                    props.follow(u.id)
+                                }}>Follow</button>}
                     </div>
                 </div>
                 <div className={s.infoItem}>
