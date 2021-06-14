@@ -45,30 +45,10 @@ const Users = (props) => {
                             <button disabled={props.followingInProgress.some(id => id === u.id)} className={s.button_follow}
                                 onClick={() => {
                                     props.followUsers(u.id)
-                                    // props.toggleFollowingProgress(true, u.id)
-                                    // usersAPI.followUsers(u.id)
-                                    //     .then(data => {
-                                    //         if (data.resultCode === 0) {
-                                    //             props.unfollow(u.id)
-                                    //         }
-                                    //         props.toggleFollowingProgress(false, u.id)
-                                    //     })
-                                    //     .catch(props.toggleFollowingProgress(false))
                                 }} > Unfollow</button>
-
                             : <button disabled={props.followingInProgress.some(id => id === u.id)}
                                 onClick={() => {
                                     props.unfollowUsers(u.id)
-                                    // props.toggleFollowingProgress(true, u.id)
-                                    // usersAPI.unfollowUsers(u.id)
-                                    //     .then(data => {
-                                    //         if (data.resultCode === 0) {
-                                    //             props.follow(u.id)
-                                    //         }
-                                    //         props.toggleFollowingProgress(false, u.id)
-                                    //     })
-                                    //     .catch(props.toggleFollowingProgress(false))
-                                    // props.follow(u.id)
                                 }}>Follow</button>}
                     </div>
                 </div>
@@ -82,8 +62,7 @@ const Users = (props) => {
                 </div>
             </div>
         </div>
-        )
-        }
+        )}
     </div >
 }
 
