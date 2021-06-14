@@ -44,7 +44,7 @@
     background-color: rgb(231, 108, 108);
     color: lightcyan;
     opacity: 0.8;
-    cursor: not-allowed;
+    /* cursor: not-allowed; */
 }
 
 .selectedPage {
