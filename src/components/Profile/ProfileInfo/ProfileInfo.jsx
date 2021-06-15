@@ -3,11 +3,13 @@ import s from './ProfileInfo.module.css'
 import userPhoto from '../../../assets/images/users.png'
 import notJob from '../../../assets/images/notJob.png'
 import job from '../../../assets/images/job.png'
+import { Redirect } from 'react-router-dom'
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
         return <Preloader />
     }
+    if (!props.isAuth) return <Redirect to='/login' />
     return (
         <div className={s.profileItems}>
             <div className={s.item}>
