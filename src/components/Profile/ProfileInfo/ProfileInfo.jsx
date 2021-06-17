@@ -3,6 +3,7 @@ import s from './ProfileInfo.module.css'
 import userPhoto from '../../../assets/images/users.png'
 import notJob from '../../../assets/images/notJob.png'
 import job from '../../../assets/images/job.png'
+import ProfileStatus from './ProfileStatus/ProfileStatus'
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -18,7 +19,8 @@ const ProfileInfo = (props) => {
             </div>
             <div className={s.description}>
                 <div className={s.fullName}>{props.profile.fullName}
-                    <img src={props.profile.lookingForAJob === true ? job : notJob} title='Job search status' /></div>
+                    <img src={props.profile.lookingForAJob ? job : notJob} title='Job search status' /></div>
+                    <ProfileStatus status={'Hello my friends'} />
                 <div className={s.aboutMe}>{props.profile.aboutMe}</div>
                 {/* <div> Looking For AJob Description:  {props.profile.lookingForAJobDescription}</div> */}
             </div>
