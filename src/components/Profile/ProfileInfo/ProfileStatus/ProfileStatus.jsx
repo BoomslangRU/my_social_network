@@ -15,12 +15,19 @@ class ProfileStatus extends React.Component {
         this.setState({
             editMode: true
         })
-        this.props.updateTextStatus(this.state.usersStatus)
     }
     deactivateEditMode = () => {
         this.setState({
             editMode: false
         })
+        this.props.updateTextStatus(this.state.usersStatus)
+    }
+    componentDidUpdate(prevProps) {
+        if (prevProps.usersStatus !== this.props.usersStatus) {
+            this.setState({
+                usersStatus: this.props.status
+            })
+        }
     }
     render() {
         return (
