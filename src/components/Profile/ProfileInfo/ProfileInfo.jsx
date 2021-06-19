@@ -20,7 +20,7 @@ const ProfileInfo = (props) => {
             <div className={s.description}>
                 <div className={s.fullName}>{props.profile.fullName}
                     <img src={props.profile.lookingForAJob ? job : notJob} title='Job search status' /></div>
-                    <ProfileStatus status={'Hello my friends'} />
+                    <ProfileStatus usersStatus={props.usersStatus} updateTextStatus={props.updateTextStatus} />
                 <div className={s.aboutMe}>{props.profile.aboutMe}</div>
                 {/* <div> Looking For AJob Description:  {props.profile.lookingForAJobDescription}</div> */}
             </div>
