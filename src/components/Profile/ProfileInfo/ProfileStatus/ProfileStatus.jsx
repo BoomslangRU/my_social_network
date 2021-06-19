@@ -25,7 +25,7 @@ class ProfileStatus extends React.Component {
     componentDidUpdate(prevProps) {
         if (prevProps.usersStatus !== this.props.usersStatus) {
             this.setState({
-                usersStatus: this.props.status
+                usersStatus: this.props.usersStatus
             })
         }
     }
