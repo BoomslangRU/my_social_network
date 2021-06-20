@@ -1,0 +1,94 @@
+* {
+    box-sizing: border-box;
+ }
+ .railway{
+    max-width: 350px;
+    padding: 80px 30px 30px;
+    margin: 50px auto 30px;
+    background: lightcyan;
+    border: rgb(21, 78, 75) 1px solid;
+    border-radius: 10px;
+ }
+ .railway h2 {
+    position: relative;
+    z-index: 5;
+    margin: 0 0 60px;
+    text-align: center;
+    color: lightcyan;
+    font-size: 30px;
+    font-weight: normal;
+ }
+ .railway h2:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 60px;
+    top: -30px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgb(41, 139, 110);
+ }
+ .railway h2:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    right: 50px;
+    top: -40px;
+    width: 0;
+    height: 0;
+    border-left: 55px solid transparent;
+    border-right: 55px solid transparent;
+    border-bottom: 90px solid rgb(35, 204, 153);
+ }
+ .formRow {
+    position: relative;
+    margin-bottom: 40px;
+ }
+ .formRow input {
+    display: block;
+    width: 100%;
+    padding: 0 10px;
+    line-height: 40px;
+    font-family: 'Roboto', sans-serif;
+    background: none;
+    border-width: 0;
+    border-bottom: 2px solid rgb(41, 139, 110);
+    transition: all 0.2s ease;
+ }
+ .formRow label {
+    position: absolute;
+    left: 13px;
+    color: #9d959d;
+    font-size: 20px;
+    font-weight: 300;
+    transform: translateY(-35px);
+    transition: all 0.2s ease;
+ }
+ .formRow input:focus {
+    outline: 0;
+    border-color: #F77A52;
+ }
+ .formRow input:focus+label, .form-row input:valid+label {
+    transform: translateY(-60px);
+    margin-left: -14px;
+    font-size: 14px;
+    font-weight: 400;
+    outline: 0;
+    border-color: #F77A52;
+    color: #F77A52;
+ }
+ .formRow button {
+    width: 100%;
+    padding: 0;
+    line-height: 42px;
+    background: rgb(41, 139, 110);
+    border-width: 0;
+    color: white;
+    font-size: 20px;
+ }
+ .ui-form p {
+    margin: 0;
+    padding-top: 10px;
+    color: rgb(21, 78, 75);
+ }
