@@ -2,10 +2,10 @@ import { Form, Field } from 'react-final-form'
 import s from './Login.module.css'
 
 const onSubmit = (e) => {
-    debugger
+    // debugger
 }
 const validate = (e) => {
-    debugger
+    // debugger
 }
 
 const Login = () => (
