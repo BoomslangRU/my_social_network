@@ -1,3 +1,58 @@
 .postBlock {
     padding-bottom: 20px;
 }
+
+.postBlock textarea  {
+    background-color: rgb(215, 248, 248);
+    min-width: 96%;
+    max-width: 950px;
+    min-height: 100px;
+    max-height: 150px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    user-select: text;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 16px;
+    line-height: 20px;
+    vertical-align: baseline;
+ }
+
+.error {
+    color: #D63301;
+    background-color: #FFCCBA;
+    font-style: italic;
+  }
+
+
+h3 {
+    color: rgb(21, 78, 75);
+    font-family: "Lora script=all rev=2", "Adobe Blank";
+    font-style: italic;
+    font-weight: 400;
+    font-size: 40px;
+    margin-bottom: 5px;
+  }
+
+  .postBlock button {
+    background-color: rgb(41, 139, 110);
+    border: 1px solid rgb(21, 78, 75);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+    color: rgb(215, 248, 248);
+    display: block;
+    width: 180px;
+    font-size: 14px;
+    height: 30px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    padding: 4px 6px;
+    text-decoration:none;
+  }
+  .postBlock button:hover {
+    border-color: rgba(82, 168, 236, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+    outline: 0 none;
+  }

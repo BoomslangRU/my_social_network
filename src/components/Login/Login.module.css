@@ -92,3 +92,8 @@
     padding-top: 10px;
     color: rgb(21, 78, 75);
  }
+ .error {
+   color: #D63301;
+   background-color: #FFCCBA;
+   font-style: italic;
+ }
