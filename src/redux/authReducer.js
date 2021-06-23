@@ -14,26 +14,45 @@ const authReducer = (state = initialState, action) => {
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.data
             }
         default:
             return state
     }
 }
 
-// Action Creations
-const setAuthUserData = (id, login, email) => ({ type: SET_USER_DATA, data: { id, login, email } })
+// Action Creators
+const setAuthUserData = (id, login, email, isAuth) => ({ type: SET_USER_DATA, data: { id, login, email, isAuth } })
 
 
-// Thunk Creation
+// Thunk Creators
 export const getAuthMe = () => {
     return (dispatch) => {
         authAPI.me()
             .then(data => {
                 if (data.resultCode === 0) {
                     let { id, login, email } = data.data
-                    dispatch(setAuthUserData(id, login, email))
+                    dispatch(setAuthUserData(id, login, email, true))
+                }
+            })
+    }
+}
+export const authLogin = (email, password, rememberMe) => {
+    return (dispatch) => {
+        authAPI.login(email, password, rememberMe)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(getAuthMe())
+                }
+            })
+    }
+}
+export const logout = () => {
+    return (dispatch) => {
+        authAPI.logout()
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(setAuthUserData(null, null, null, false))
                 }
             })
     }

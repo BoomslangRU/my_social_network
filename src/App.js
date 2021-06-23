@@ -2,12 +2,12 @@ import { Route } from 'react-router'
 import './App.css'
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
-import Login from './components/Login/Login'
+import LoginContainer from './components/Login/LoginContainer'
 import Music from './components/Music/Music'
 import Nav from './components/Nav/Nav'
 import News from './components/News/News'
 import ProfileContainer from './components/Profile/ProfileContainer'
-import Setting from './components/Setting/Setting'
+import SettingContainer from './components/Setting/SettingContainer'
 import UsersContainer from './components/Users/UsersContainer'
 
 
@@ -22,8 +22,8 @@ const App = () => {
         <Route path='/news' render={() => <News />} />
         <Route path='/music' render={() => <Music />} />
         <Route path='/users' render={() => <UsersContainer />} />
-        <Route path='/setting' render={() => <Setting />} />
-        <Route path='/login' render={() => <Login />} />
+        <Route path='/setting' render={() => <SettingContainer />} />
+        <Route path='/login' render={() => <LoginContainer />} />
       </div>
     </div>
   )
