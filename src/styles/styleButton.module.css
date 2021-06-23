@@ -1,0 +1,20 @@
+.buttonBlock button {
+    background-color: rgb(41, 139, 110);
+    border: 1px solid rgb(21, 78, 75);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+    color: rgb(215, 248, 248);
+    display: block;
+    width: 180px;
+    font-size: 14px;
+    height: 30px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    padding: 4px 6px;
+    text-decoration:none;
+  }
+  .buttonBlock button:hover {
+    border-color: rgba(82, 168, 236, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+    outline: 0 none;
+  }

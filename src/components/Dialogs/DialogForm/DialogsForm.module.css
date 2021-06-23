@@ -2,3 +2,26 @@
     padding-top: 50px;
     display: inline-block;
 }
+
+.error {
+    color: #D63301;
+    background-color: #FFCCBA;
+    font-style: italic;
+  }
+
+  .formRow textarea  {
+    background-color: rgb(215, 248, 248);
+    width: 400px;
+    min-height: 100px;
+    max-height: 150px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    user-select: text;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 16px;
+    line-height: 20px;
+    vertical-align: baseline;
+ }

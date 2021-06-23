@@ -1,5 +1,6 @@
 import { Form, Field } from 'react-final-form'
 import s from './PostForm.module.css'
+import styleButton from '../../../../styles/styleButton.module.css'
 
 const PostForm = (props) => {
   const onSubmit = (e) => {
@@ -33,7 +34,7 @@ const PostForm = (props) => {
                 )}
               />
             </div>
-            <div className={s.postBlock}>
+            <div className={styleButton.buttonBlock}>
               <button type='submit'><span>Add Post</span></button>
             </div>
           </div>
