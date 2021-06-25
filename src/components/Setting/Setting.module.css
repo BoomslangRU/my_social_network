@@ -1,0 +1,19 @@
+.singOut {
+    margin: 200px 0 30px 10px;
+    font-size: 1.2em;
+}
+
+.singOut a {
+    color: #F77A52;
+    text-decoration: none;
+}
+.singOut a:hover {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #F77A52;
+    outline: 0 none;
+    font-weight: 600;
+}
+
+.singOut img {
+    width: 20px;
+    margin: 20px 3px 0 0;
+}

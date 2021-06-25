@@ -1,4 +1,5 @@
 import { Form, Field } from 'react-final-form'
+import { Redirect } from 'react-router-dom'
 import s from './Login.module.css'
 
 
@@ -16,6 +17,11 @@ const Login = (props) => {
         }
         return errors
     }
+
+    
+    if (props.isAuth) {
+        return <Redirect to={'/profile'} />
+    } 
 
     return (
         <Form
