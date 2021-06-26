@@ -7,7 +7,7 @@ import Login from './Login'
 class LoginContainer extends React.Component {
     render() {
         return (
-            <Login authLogin={this.props.authLogin} isAuth={this.props.isAuth} />
+            <Login {...this.props} />
         )
     }
 }

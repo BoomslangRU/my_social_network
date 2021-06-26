@@ -7,9 +7,9 @@ const clickLogout = () => {
     props.logout()
 }
 
-// if (!props.isAuth) {
-//     return <Redirect to={'/login'} />
-// } 
+if (!props.isAuth) {
+    return <Redirect to={'/login'} />
+} 
     return (
         <div className={s.singOut}>
             <img src={logout}></img>

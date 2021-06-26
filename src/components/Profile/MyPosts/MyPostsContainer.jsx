@@ -1,14 +1,22 @@
 import { connect } from 'react-redux'
 import { onAddPost } from '../../../redux/profileReducer'
 import MyPosts from './MyPosts'
+import React from 'react'
 
-let mapStateToProps = (state) => {
+
+class MyPostsContainer extends React.Component {
+    render() {
+        return (
+            <MyPosts {...this.props} />
+        )
+    }
+}
+
+const mapStateToProps = (state) => {
     return {
         newPostText: state.profilePage.newPostText,
         posts: state.profilePage.posts
     }
 }
 
-const MyPostsContainer = connect(mapStateToProps, { onAddPost })(MyPosts)
-
-export default MyPostsContainer
+export default connect(mapStateToProps, { onAddPost })(MyPostsContainer)
