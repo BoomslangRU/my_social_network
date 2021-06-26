@@ -15,19 +15,24 @@ const Login = (props) => {
         if (e.password && (e.password.length < 8 || e.password.length > 12)) {
             errors.password = 'password must be from 8 to 12 characters'
         }
+        if (!e.login) {
+            errors.login = 'Required'
+        }
+        if (!e.password) {
+            errors.password = 'Required'
+        }
         return errors
     }
 
-    
     if (props.isAuth) {
         return <Redirect to={'/profile'} />
-    } 
+    }
 
     return (
         <Form
             onSubmit={onSubmit}
             validate={validate}
-            render={({ handleSubmit }) => (
+            render={({ handleSubmit, submitError }) => (
                 <form className={s.railway} onSubmit={handleSubmit}>
                     <div className={s.loginItems}>
                         <h2>Login</h2>
@@ -36,7 +41,8 @@ const Login = (props) => {
                                 render={({ input, meta }) => (
                                     <div>
                                         <input {...input} type='text' placeholder='Login' />
-                                        {meta.touched && meta.error && <div className={s.error}>{meta.error}</div>}
+                                        {meta.touched && (meta.error || meta.submitError)
+                                            && <div className={s.error}>{meta.error || meta.submitError}</div>}
                                     </div>
                                 )}
                             />
@@ -46,7 +52,8 @@ const Login = (props) => {
                                 render={({ input, meta }) => (
                                     <div>
                                         <input {...input} type='password' placeholder='Password' />
-                                        {meta.touched && meta.error && <div className={s.error}>{meta.error}</div>}
+                                        {meta.touched && (meta.error || meta.submitError)
+                                            && <div className={s.error}>{meta.error || meta.submitError}</div>}
                                     </div>
                                 )}
                             />
@@ -55,7 +62,7 @@ const Login = (props) => {
                             <Field name='rememberMe' component='input' type='checkbox' /> <p>remember me</p>
                         </div>
                         <div className={s.formRow}>
-                            <button className={s.formRow} type='submit'>Login</button>
+                            <button className={s.formRow} type='submit' >Login</button>
                         </div>
                     </div>
                 </form>
