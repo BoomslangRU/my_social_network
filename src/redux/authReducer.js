@@ -1,12 +1,14 @@
 import { authAPI } from '../api/api'
 
 const SET_USER_DATA = 'SET_USER_DATA'
+const ERROR_MESSAGE_RESPONSE = 'ERROR_MESSAGE_RESPONSE'
 
 const initialState = {
     id: null,
     login: null,
     email: null,
-    isAuth: false
+    isAuth: false,
+    message: null
 }
 
 const authReducer = (state = initialState, action) => {
@@ -16,6 +18,10 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 ...action.data
             }
+        case ERROR_MESSAGE_RESPONSE:
+            return {
+                ...state, message: action.message
+            }
         default:
             return state
     }
@@ -23,7 +29,7 @@ const authReducer = (state = initialState, action) => {
 
 // Action Creators
 const setAuthUserData = (id, login, email, isAuth) => ({ type: SET_USER_DATA, data: { id, login, email, isAuth } })
-
+const errorMessageResponse = (message) => ({ type: ERROR_MESSAGE_RESPONSE, message})
 
 // Thunk Creators
 export const getAuthMe = () => {
@@ -43,6 +49,8 @@ export const authLogin = (email, password, rememberMe) => {
             .then(data => {
                 if (data.resultCode === 0) {
                     dispatch(getAuthMe())
+                } else {
+                    dispatch(errorMessageResponse(data.messages[0]))
                 }
             })
     }

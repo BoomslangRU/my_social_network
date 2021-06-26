@@ -97,3 +97,11 @@
    background-color: #FFCCBA;
    font-style: italic;
  }
+
+ .errorMessage {
+   color: #D63301;
+   background-color: #FFCCBA;
+   font-style: italic;
+    margin-bottom: 40px;
+    text-align: center;
+ }

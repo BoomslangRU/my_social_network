@@ -32,7 +32,7 @@ const Login = (props) => {
         <Form
             onSubmit={onSubmit}
             validate={validate}
-            render={({ handleSubmit, submitError }) => (
+            render={({ handleSubmit }) => (
                 <form className={s.railway} onSubmit={handleSubmit}>
                     <div className={s.loginItems}>
                         <h2>Login</h2>
@@ -61,6 +61,7 @@ const Login = (props) => {
                         <div className={s.formRow}>
                             <Field name='rememberMe' component='input' type='checkbox' /> <p>remember me</p>
                         </div>
+                        <div className={s.errorMessage}>{props.message}</div>
                         <div className={s.formRow}>
                             <button className={s.formRow} type='submit' >Login</button>
                         </div>
