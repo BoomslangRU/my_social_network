@@ -1,10 +1,10 @@
-import React from 'react'
+import { Component } from 'react'
 import { connect } from 'react-redux'
 import { authLogin } from '../../redux/authReducer'
 import Login from './Login'
 
 
-class LoginContainer extends React.Component {
+class LoginContainer extends Component {
     render() {
         return (
             <Login {...this.props} />
