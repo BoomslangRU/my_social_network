@@ -15,7 +15,9 @@ class MyPostsContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         newPostText: state.profilePage.newPostText,
-        posts: state.profilePage.posts
+        posts: state.profilePage.posts,
+        authorizedUserId: state.auth.id,
+        users: state.usersPage.users
     }
 }
 
