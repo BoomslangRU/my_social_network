@@ -4,11 +4,9 @@ import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import { sendMessage } from '../../redux/dialogsReducer'
 import Dialogs from './Dialogs'
 
-let mapStateToProps = (state) => {
-    return {
-        dialogsPage: state.dialogsPage
-    }
-}
+let mapStateToProps = (state) => ({
+    dialogsPage: state.dialogsPage
+})
 
 
 export default compose(

@@ -8,7 +8,7 @@ const initialState = {
     login: null,
     email: null,
     isAuth: false,
-    message: null
+    messageError: null
 }
 
 const authReducer = (state = initialState, action) => {
@@ -20,7 +20,7 @@ const authReducer = (state = initialState, action) => {
             }
         case ERROR_MESSAGE_RESPONSE:
             return {
-                ...state, message: action.message
+                ...state, messageError: action.message
             }
         default:
             return state
@@ -47,7 +47,6 @@ export const authLogin = (email, password, rememberMe) => {
     return (dispatch) => {
         authAPI.login(email, password, rememberMe)
             .then(data => {
-                debugger
                 if (data.resultCode === 0) {
                     dispatch(getAuthMe())
                 } else {

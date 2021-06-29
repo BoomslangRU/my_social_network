@@ -61,7 +61,7 @@ export const updateTextStatus = (text) => {
     return (dispatch) => {
         ProfileAPI.updateUserStatus(text)
             .then(response => {
-                if (response.data.resultCode === 0) {
+                if (response.resultCode === 0) {
                     dispatch(setTextStatus(text))
                 }
             })

@@ -3,13 +3,9 @@ import s from './Setting.module.css'
 import logout from '../../assets/images/logout.png'
 
 const Setting = (props) => {
-const clickLogout = () => {
-    props.logout()
-}
-
-if (!props.isAuth) {
-    return <Redirect to={'/login'} />
-} 
+    const clickLogout = () => {
+        props.logout()
+    }
     return (
         <div className={s.singOut}>
             <img src={logout}></img>

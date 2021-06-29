@@ -1,10 +1,12 @@
 import Setting from './Setting'
 import { connect } from 'react-redux'
 import { logout } from '../../redux/authReducer'
-import React from 'react'
+import { Component } from 'react'
+import { compose } from 'redux'
+import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 
 
-class SettingContainer extends React.Component {
+class SettingContainer extends Component {
     render() {
         return (
             <div>
@@ -14,10 +16,11 @@ class SettingContainer extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        isAuth: state.auth.isAuth
-    }
-}
+const mapStateToProps = (state) => ({
+    isAuth: state.auth.isAuth
+})
 
-export default connect(mapStateToProps, { logout })(SettingContainer)
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps, { logout })
+)(SettingContainer)
