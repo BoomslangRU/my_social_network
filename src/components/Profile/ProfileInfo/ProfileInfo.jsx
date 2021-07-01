@@ -21,7 +21,7 @@ const ProfileInfo = (props) => {
                 <div className={s.fullName}>{props.profile.fullName}
                     <img src={props.profile.lookingForAJob ? notJob : job} 
                     title={props.profile.lookingForAJob ? 'looking for work' : 'not looking for work'} /></div>
-                    <ProfileStatusWithHooks usersStatus={props.usersStatus} updateTextStatus={props.updateTextStatus} />
+                    <ProfileStatusWithHooks {...props} />
                 <div className={s.aboutMe}>{props.profile.aboutMe}</div>
                 {/* <div> Looking For AJob Description:  {props.profile.lookingForAJobDescription}</div> */}
             </div>
