@@ -3,11 +3,12 @@ import { ProfileAPI } from '../api/api'
 const ADD_POST = 'ADD_POST'
 const SET_USERS_PROFILE = 'SET_USERS_PROFILE'
 const SET_TEXT_STATUS = 'SET_TEXT_STATUS'
+const DELETE_POST = 'DELETE_POST'
 
 const initialState = {
     posts: [
-        { message: 'Hi, how are you?', likeCounter: 12 },
-        { message: 'It\'s my first post', likeCounter: 15 }
+        { id: 1, message: 'Hi, how are you?', likeCounter: 12 },
+        { id: 2, message: 'It\'s my first post', likeCounter: 15 }
     ],
     profile: null,
     usersStatus: ''
@@ -29,6 +30,8 @@ const profileReducer = (state = initialState, action) => {
             return { ...state, profile: action.profile }
         case SET_TEXT_STATUS:
             return { ...state, usersStatus: action.text }
+        case DELETE_POST:
+            return { ...state, posts: state.posts.filter(p => p.id !== action.postID) }
         default:
             return state
     }
@@ -38,6 +41,7 @@ const profileReducer = (state = initialState, action) => {
 const setTextStatus = (text) => ({ type: SET_TEXT_STATUS, text })
 const setUsersProfile = (profile) => ({ type: SET_USERS_PROFILE, profile })
 export const onAddPost = (postText) => ({ type: ADD_POST, postText })
+export const deletePost = (postID) => ({ type: DELETE_POST, postID })
 
 
 // Thunk Creation
