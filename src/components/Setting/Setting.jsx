@@ -1,14 +1,14 @@
-import { NavLink, Redirect } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import s from './Setting.module.css'
-import logout from '../../assets/images/logout.png'
+import logout_image from '../../assets/images/logout.png'
 
-const Setting = (props) => {
+const Setting = ({ logout }) => {
     const clickLogout = () => {
-        props.logout()
+        logout()
     }
     return (
         <div className={s.singOut}>
-            <img src={logout}></img>
+            <img src={logout_image}></img>
             <NavLink onClick={clickLogout} to={'/login'}>Sing Out</NavLink>
         </div>
     )

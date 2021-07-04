@@ -1,8 +1,8 @@
 import { ProfileAPI } from '../api/api'
 
 const ADD_POST = 'ADD_POST'
-const SET_USERS_PROFILE = 'SET_USERS_PROFILE'
-const SET_TEXT_STATUS = 'SET_TEXT_STATUS'
+const SET_USERS_PROFILE = 'profileReducer/SET_USERS_PROFILE'
+const SET_TEXT_STATUS = 'profilePage/SET_TEXT_STATUS'
 const DELETE_POST = 'DELETE_POST'
 
 const initialState = {
@@ -45,30 +45,18 @@ export const deletePost = (postID) => ({ type: DELETE_POST, postID })
 
 
 // Thunk Creation
-export const getProfile = (userID) => {
-    return (dispatch) => {
-        ProfileAPI.getProfile(userID)
-            .then(data => {
-                dispatch(setUsersProfile(data))
-            })
-    }
+export const getProfile = (userID) => async (dispatch) => {
+    const response = await ProfileAPI.getProfile(userID)
+    dispatch(setUsersProfile(response))
 }
-export const getTextStatus = (userID) => {
-    return (dispatch) => {
-        ProfileAPI.getUserStatus(userID)
-            .then(data => {
-                dispatch(setTextStatus(data))
-            })
-    }
+export const getTextStatus = (userID) => async (dispatch) => {
+    const response = await ProfileAPI.getUserStatus(userID)
+    dispatch(setTextStatus(response))
 }
-export const updateTextStatus = (text) => {
-    return (dispatch) => {
-        ProfileAPI.updateUserStatus(text)
-            .then(response => {
-                if (response.resultCode === 0) {
-                    dispatch(setTextStatus(text))
-                }
-            })
+export const updateTextStatus = (text) => async (dispatch) => {
+    const response = await ProfileAPI.updateUserStatus(text)
+    if (response.resultCode === 0) {
+        dispatch(setTextStatus(text))
     }
 }
 

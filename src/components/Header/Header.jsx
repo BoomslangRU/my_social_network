@@ -2,12 +2,12 @@ import s from './Header.module.css'
 import { NavLink } from 'react-router-dom'
 import logo from '../../assets/images/logo_header.png'
 
-const Header = (props) => {
+const Header = ({ isAuth, login }) => {
     return (
         <header className={s.header}>
             <img src={logo}></img>
             <div className={s.loginBlock}>
-                {props.isAuth ? <NavLink to={'/setting'}>{props.login}</NavLink> : <NavLink to={'/login'}>Login</NavLink>}
+                {isAuth ? <NavLink to={'/setting'}>{login}</NavLink> : <NavLink to={'/login'}>Login</NavLink>}
             </div>
         </header>
     )

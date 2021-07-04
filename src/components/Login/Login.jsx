@@ -3,9 +3,9 @@ import { Redirect } from 'react-router-dom'
 import s from './Login.module.css'
 
 
-const Login = (props) => {
+const Login = ({ authLogin, isAuth, message }) => {
     const onSubmit = (e) => {
-        props.authLogin(e.login, e.password, e.rememberMe)
+        authLogin(e.login, e.password, e.rememberMe)
     }
     const validate = (e) => {
         const errors = {}
@@ -24,7 +24,7 @@ const Login = (props) => {
         return errors
     }
 
-    if (props.isAuth) {
+    if (isAuth) {
         return <Redirect to={'/profile'} />
     }
 
@@ -61,7 +61,7 @@ const Login = (props) => {
                         <div className={s.formRow}>
                             <Field name='rememberMe' component='input' type='checkbox' /> <p>remember me</p>
                         </div>
-                        <div className={s.errorMessage}>{props.message}</div>
+                        <div className={s.errorMessage}>{message}</div>
                         <div className={s.formRow}>
                             <button className={s.formRow} type='submit' >Login</button>
                         </div>
