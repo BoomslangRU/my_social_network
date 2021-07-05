@@ -1,0 +1,10 @@
+.selectedPage {
+    text-align: center;
+    color: rgb(21, 78, 75);
+    cursor: pointer;
+}
+
+.activeSelectedPage {
+    color: rgb(77, 153, 153);
+    font-size: 1.3em;
+}

@@ -4,6 +4,7 @@ import userPhoto from '../../../assets/images/users.png'
 import notJob from '../../../assets/images/notJob.png'
 import job from '../../../assets/images/job.png'
 import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks'
+import background from '../../../assets/images/background.jpg'
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -12,7 +13,7 @@ const ProfileInfo = (props) => {
     return (
         <div className={s.profileItems}>
             <div className={s.item}>
-                <img src='https://www.campaignmonitor.com/wp-content/uploads/2010/12/background_d.jpg'></img>
+                <img src={background}></img>
             </div>
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto} />
