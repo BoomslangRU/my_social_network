@@ -7,7 +7,7 @@ import PostForm from './PostForm/PostForm'
 // and additions for educational purposes
 const MyPosts = memo(props => {
 
-  let postsElements = props.posts.map(p => <Post message={p.message} key={p.key} likeCounter={p.likeCounter} />)
+  let postsElements = props.posts.map(p => <Post key={p.key} message={p.message} likeCounter={p.likeCounter} />)
 
   return (
     <div className={s.item}>

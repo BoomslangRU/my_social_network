@@ -10,7 +10,8 @@ const Users = (props) => {
             onPageChanged={props.onPageChanged}
         />
         {props.users.map(u =>
-            <User user={u}
+            <User key={u.id}
+                user={u}
                 followingInProgress={props.followingInProgress}
                 followUsers={props.followUsers}
                 unfollowUsers={props.unfollowUsers}

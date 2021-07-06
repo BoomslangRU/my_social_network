@@ -1,5 +1,6 @@
 import s from './Pagination.module.css'
 
+
 const Pagination = ({ totalUsersCount, pageSize, currentPage, onPageChanged }) => {
     let pagesCount = Math.ceil(totalUsersCount / pageSize)
     let pages = []
@@ -30,6 +31,5 @@ const Pagination = ({ totalUsersCount, pageSize, currentPage, onPageChanged }) =
         </div>
     )
 }
-
 
 export default Pagination
