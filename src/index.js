@@ -1,26 +1,10 @@
 import './index.css'
 import reportWebVitals from './reportWebVitals'
-import store from './redux/storeRedux'
 import ReactDOM from 'react-dom'
-import App from './App'
-import { BrowserRouter } from 'react-router-dom'
-import { Provider } from 'react-redux'
+import MainApp from './App'
 
-export let renderEntireTree = () => {
-  ReactDOM.render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>,
-    document.getElementById('root'))
-}
+ReactDOM.render(<MainApp />, document.getElementById('root'))
 
-renderEntireTree()
-
-store.subscribe(() => {
-  renderEntireTree()
-})
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
