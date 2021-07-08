@@ -2,10 +2,10 @@ import { Form, Field } from 'react-final-form'
 import s from './PostForm.module.css'
 import styleButton from '../../../../styles/styleButton.module.css'
 
-const PostForm = (props) => {
+const PostForm = ({ onAddPost }) => {
   const onSubmit = (e) => {
     if (e.newPostText) {
-      props.onAddPost(e.newPostText)
+      onAddPost(e.newPostText)
     }
   }
   const validate = (e) => {

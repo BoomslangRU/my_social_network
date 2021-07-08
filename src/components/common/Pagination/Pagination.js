@@ -1,9 +1,27 @@
+import { useEffect, useState } from 'react'
 import s from './Pagination.module.css'
 
 
 const Pagination = ({ totalUsersCount, pageSize, currentPage, onPageChanged }) => {
+    let [prevPage, setPrevPage] = useState(false)
+    let [nextPage, setNextPage] = useState(false)
     let pagesCount = Math.ceil(totalUsersCount / pageSize)
     let pages = []
+
+    const prevClick = () => {
+
+    }
+    const nextClick = () => {
+
+    }
+
+    // if (currentPage > 9) {
+    //     setPrevPage(true)
+    // }
+    // if (currentPage < (pagesCount - 9)) {
+    //     setPrevPage(false)
+    // }
+
 
     if (pagesCount > 9) {
         if (currentPage > 5) {
@@ -24,10 +42,12 @@ const Pagination = ({ totalUsersCount, pageSize, currentPage, onPageChanged }) =
     }
     return (
         <div className={s.selectedPage}>
+            {!!prevPage ? <span onClick={prevClick}>prev  </span> : ''}
             {pages.map(p => {
                 return <span className={currentPage === p && s.activeSelectedPage}
                     key={p.id} onClick={() => { onPageChanged(p) }} >{p} </span>
             })}
+            {!!nextPage ? <span onClick={nextClick}>  next</span> : ''}
         </div>
     )
 }
