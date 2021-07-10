@@ -62,12 +62,12 @@ const Pagination = ({ totalUsersCount, pageSize, currentPage, onPageChanged, set
 
     return (
         <div className={s.selectedPage}>
-            {!!prevPage ? <span onClick={prevClickSpan}>prev  </span> : ''}
+            {!!prevPage && <span onClick={prevClickSpan}>prev  </span>}
             {pages.map(p => {
                 return <span className={currentPage === p && s.activeSelectedPage}
                     key={p} onClick={() => { onPageChanged(p) }} >{p} </span>
             })}
-            {!!nextPage ? <span onClick={nextClickSpan}>  next</span> : ''}
+            {!!nextPage && <span onClick={nextClickSpan}>  next</span>}
         </div>
     )
 }

@@ -1,0 +1,27 @@
+input[type=file] {
+  cursor: pointer;
+  width: 180px;
+  height: 34px;
+  overflow: hidden;
+}
+
+input[type=file]:before {
+  color: rgb(215, 248, 248);
+  width: 158px;
+  height: 32px;
+  font-size: 16px;
+  line-height: 32px;
+  content: 'select your avatar';
+  display: inline-block;
+  background: rgb(41, 139, 110);
+  border: 1px solid rgb(21, 78, 75);
+  padding: 0 10px;
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+input:hover {
+  border-color: rgba(82, 168, 236, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+  outline: 0 none;
+}

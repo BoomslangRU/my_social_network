@@ -7,7 +7,7 @@ import { Component } from 'react'
 
 
 class ProfileContainer extends Component {
-  componentDidMount() {
+  refreshProfile() {
     let userId = this.props.match.params.userId
     if (!userId) {
       userId = this.props.authorizedUserId
@@ -18,9 +18,20 @@ class ProfileContainer extends Component {
     this.props.getProfile(userId)
     this.props.getTextStatus(userId)
   }
+
+  componentDidMount() {
+    this.refreshProfile()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.userId !== prevProps.match.params.userId) {
+      this.refreshProfile()
+    }
+  }
+  
   render() {
     return (
-      <Profile {...this.props} />
+      <Profile {...this.props} isOwner={!this.props.match.params.userId} />
     )
   }
 }
