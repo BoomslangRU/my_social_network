@@ -1,7 +1,7 @@
 import { Component, lazy } from 'react'
 import { connect, Provider } from 'react-redux'
 import { Route } from 'react-router'
-import { BrowserRouter, withRouter } from 'react-router-dom'
+import { HashRouter, withRouter } from 'react-router-dom'
 import { compose } from 'redux'
 import './App.css'
 import HeaderContainer from './components/Header/HeaderContainer'
@@ -48,11 +48,11 @@ class App extends Component {
 
 const MainApp = () => {
   return (
-    <BrowserRouter>
+    <HashRouter >
       <Provider store={store}>
         <AppContainer />
       </Provider>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
