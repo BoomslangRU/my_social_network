@@ -9,19 +9,26 @@ import styleInput from '../../../styles/styleInputFile.module.css'
 
 
 const ProfileInfo = (props) => {
+    const onManePhotoSelected = (e) => {
+        if (e.target.files.length) {
+            props.savePhoto(e.target.files[0])
+        }
+    }
+
     if (!props.profile) {
         return <Preloader />
     }
+    debugger
     return (
         <div className={s.profileItems}>
             <div className={s.item}>
                 <img src={background}></img>
             </div>
             <div className={s.descriptionBlock}>
-                <img src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto} />
+                <img src={!!props.profile.photos.large ? props.profile.photos.large : userPhoto} />
             </div>
             <div className={s.ownerItem}>
-                {props.isOwner && <input className={styleInput} type={'file'} />}
+                {props.isOwner && <input className={styleInput} type={'file'} onChange={onManePhotoSelected} />}
             </div>
             <div className={s.description}>
                 <div className={s.fullName}>{props.profile.fullName}
