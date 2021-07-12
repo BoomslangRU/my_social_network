@@ -1,5 +1,8 @@
 .statusItems {
-    padding-left: 3px;
+    padding-bottom: 30px;
     color: rgb(21, 78, 75);
     cursor: pointer;
+    font-style: italic;
+    font-size: 1.4em;
+    font-weight: 400;
 }
