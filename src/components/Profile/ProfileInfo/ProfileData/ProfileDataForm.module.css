@@ -1,0 +1,33 @@
+.formRow {
+    margin: 10px 0 5px 0;
+}
+.description input  {
+    background-color: rgb(215, 248, 248);
+    width: 200px;
+    height: 25px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    user-select: text;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 16px;
+    line-height: 20px;
+    vertical-align: baseline;
+ }
+ .description {
+    color: rgb(21, 78, 75);
+ }
+
+.error {
+    color: #D63301;
+    background-color: #FFCCBA;
+    font-style: italic;
+  }
+
+.checkbox input {
+    margin-left: 15px;
+    width: 20px;
+    height: 25px;
+}
