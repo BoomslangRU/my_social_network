@@ -4,17 +4,13 @@ import userPhoto from '../../../assets/images/users.png'
 import background from '../../../assets/images/background.jpg'
 import styleInput from '../../../styles/styleInputFile.module.css'
 import styleButton from '../../../styles/styleButton.module.css'
-import ProfileData from './ProfileData/ProfileDataForm'
+import ProfileData from './ProfileData/ProfileData'
 import { useEffect, useState } from 'react'
 import ProfileDataForm from './ProfileData/ProfileDataForm'
 
 const ProfileInfo = (props) => {
 
     let [editMode, setEditMode] = useState(false)
-
-    useEffect(() => {
-        setEditMode()
-    }, [setEditMode])
 
     const onManePhotoSelected = (e) => {
         if (e.target.files.length) {
