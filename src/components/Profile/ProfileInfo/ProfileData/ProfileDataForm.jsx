@@ -15,7 +15,11 @@ const ProfileDataForm = (props) => {
   }
 
   const onSubmit = (e) => {
-    props.saveProfile(e)
+    props.saveProfile(e).then (
+      () => {
+        props.exitToEditMode()
+      }
+    )
   }
   const validate = (e) => {
     const errors = {}
@@ -32,8 +36,8 @@ const ProfileDataForm = (props) => {
     return <Preloader />
   }
   return (
-
     <Form onSubmit={onSubmit}
+      initialValues={props.profile}
       validate={validate}
       render={({ handleSubmit }) => (
         <form className={s.railway} onSubmit={handleSubmit}>
@@ -77,7 +81,7 @@ const ProfileDataForm = (props) => {
 
             {/* input professional skills */}
             <div className={styleForm.formRow}>
-              <Field name='LookingForAJobDescription'
+              <Field name='lookingForAJobDescription'
                 render={({ input, meta }) => (
                   <div>
                     <b>My professional skills:</b> <input {...input} type='text' />

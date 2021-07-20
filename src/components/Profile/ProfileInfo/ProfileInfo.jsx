@@ -20,6 +20,9 @@ const ProfileInfo = (props) => {
     const goToEditMode = () => {
         setEditMode(true)
     }
+    const exitToEditMode = () => {
+        setEditMode(false)
+    }
 
     if (!props.profile) {
         return <Preloader />
@@ -50,7 +53,7 @@ const ProfileInfo = (props) => {
         {/* edit mode */}
         <div>
             {editMode
-                ? <ProfileDataForm initialValues={props.profile} {...props} />
+                ? <ProfileDataForm {...props} exitToEditMode={exitToEditMode} />
                 : <ProfileData {...props} />}
         </div>
     </div>

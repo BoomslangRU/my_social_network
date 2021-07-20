@@ -64,15 +64,16 @@ export const updateTextStatus = (text) => async (dispatch) => {
     }
 }
 export const savePhoto = (filePhoto) => async (dispatch) => {
-    let response = await ProfileAPI.savePhoto(filePhoto)
+    const response = await ProfileAPI.savePhoto(filePhoto)
     if (response.resultCode === 0) {
         dispatch(setPhotoSuccess(response))
     }
 }
-export const saveProfile = (profile) => async (dispatch) => {
-    let response = await ProfileAPI.saveProfile(profile)
+export const saveProfile = (profile) => async (dispatch, getState) => {
+    const userId = getState().auth.id
+    const response = await ProfileAPI.saveProfile(profile)
     if (response.resultCode === 0) {
-        // dispatch(setPhotoSuccess(response))
+        dispatch(getProfile(userId))
     }
 }
 
