@@ -9,7 +9,9 @@ const ProfileInfo = (props) => {
     const Contact = ({ contactTitle, contactValue }) => {
         return <div className={s.contactsMe}>
             <b>{contactTitle} :</b>
-            <span className={s.addFont}>{contactValue ? contactValue : 'No information'}</span>
+            {contactValue
+                ? <a className={s.contactName} href={contactValue}>{contactValue}</a>
+                : <span className={s.redTextNoInformation}>No information</span>}
         </div>
     }
 
@@ -26,19 +28,22 @@ const ProfileInfo = (props) => {
             <ProfileStatus {...props} />
 
             {/* information about me */}
-            <div className={s.aboutMe}>
-                <b>About Me: </b>{props.profile.aboutMe}
-            </div>
+            {props.profile.aboutMe &&
+                <div className={s.aboutMe}>
+                    <b>About Me: </b>{props.profile.aboutMe}
+                </div>
+            }
 
             {/* information about professional skills */}
             {props.profile.lookingForAJobDescription &&
                 <div className={s.aboutMe}>
                     <b>My professional skills:</b> {props.profile.lookingForAJobDescription}
-                </div>}
+                </div>
+            }
 
             {/* information about contacts */}
             <div className={s.aboutMe}>
-                <b>Contacts: </b>
+                <h2>Contacts: </h2>
                 {Object.keys(props.profile.contacts).map(key => {
                     return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]} />
                 })}

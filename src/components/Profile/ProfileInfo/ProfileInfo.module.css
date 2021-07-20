@@ -50,12 +50,25 @@
     text-align: center;
     padding-bottom: 3px;
 }
-.addFont {
+.redTextNoInformation {
     padding-left: 10px;
     font-style: italic;
     font-size: 0.9em;
     color: #F77A52;
 }
+.contactName {
+    padding-left: 10px;
+    text-decoration: none;
+    color: rgb(21, 78, 75);
+}
 .descriptionBlock button {
     margin: 0 auto;
+}
+.aboutMe h2 {
+    color: rgb(21, 78, 75);
+    font-family: "Lora script=all rev=2", "Adobe Blank";
+    font-style: italic;
+    font-weight: 400;
+    font-size: 25px;
+    margin-bottom: 5px;
 }

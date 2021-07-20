@@ -12,7 +12,7 @@ const Login = ({ authLogin, isAuth, message }) => {
         if (e.login && (e.login.length < 3 || e.login.length > 20)) {
             errors.login = 'login must be from 3 to 20 characters'
         }
-        if (e.password && (e.password.length < 8 || e.password.length > 12)) {
+        if (e.password && (e.password.length < 4 || e.password.length > 12)) {
             errors.password = 'password must be from 8 to 12 characters'
         }
         if (!e.login) {
@@ -63,7 +63,7 @@ const Login = ({ authLogin, isAuth, message }) => {
                         </div>
                         <div className={s.errorMessage}>{message}</div>
                         <div className={s.formRow}>
-                            <button className={s.formRow} type='submit' >Login</button>
+                            <button type='submit' >Login</button>
                         </div>
                     </div>
                 </form>

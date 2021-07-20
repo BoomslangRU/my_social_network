@@ -1,7 +1,8 @@
 .formRow {
-    margin: 10px 0 5px 0;
+    margin: 40px 0 0 20px;
 }
 .description input  {
+    border: 1px solid rgb(21, 78, 75);
     background-color: rgb(215, 248, 248);
     width: 200px;
     height: 25px;
@@ -15,7 +16,14 @@
     font-size: 16px;
     line-height: 20px;
     vertical-align: baseline;
+    margin-left: 10px;
  }
+ .description button {
+    margin: 40px 0 0 100px;
+    background-color: #FFCCBA;
+    color: rgb(21, 78, 75);
+ }
+
  .description {
     color: rgb(21, 78, 75);
  }
@@ -25,9 +33,23 @@
     background-color: #FFCCBA;
     font-style: italic;
   }
+.checkbox {
+    margin: 30px 0 0 20px;
+}
 
 .checkbox input {
     margin-left: 15px;
     width: 20px;
     height: 25px;
+}
+.formRow h2 {
+    color: rgb(21, 78, 75);
+    font-family: "Lora script=all rev=2", "Adobe Blank";
+    font-style: italic;
+    font-weight: 400;
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+.styleButton button {
+    background-color: #D63301;
 }

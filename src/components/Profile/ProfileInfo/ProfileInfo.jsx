@@ -5,7 +5,7 @@ import background from '../../../assets/images/background.jpg'
 import styleInput from '../../../styles/styleInputFile.module.css'
 import styleButton from '../../../styles/styleButton.module.css'
 import ProfileData from './ProfileData/ProfileData'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import ProfileDataForm from './ProfileData/ProfileDataForm'
 
 const ProfileInfo = (props) => {
@@ -42,7 +42,7 @@ const ProfileInfo = (props) => {
 
             {/* button for edit profile */}
             <div className={styleButton.buttonBlock}>
-                {!props.isOwner && <button onClick={goToEditMode} type={'submit'}><span>edit profile</span></button>}
+                {!props.isOwner && <button onClick={goToEditMode}><span>edit profile</span></button>}
             </div>
 
         </div>
@@ -50,7 +50,7 @@ const ProfileInfo = (props) => {
         {/* edit mode */}
         <div>
             {editMode
-                ? <ProfileDataForm {...props} />
+                ? <ProfileDataForm initialValues={props.profile} {...props} />
                 : <ProfileData {...props} />}
         </div>
     </div>

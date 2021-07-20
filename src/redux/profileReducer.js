@@ -32,7 +32,6 @@ const profileReducer = (state = initialState, action) => {
         case SET_TEXT_STATUS:
             return { ...state, usersStatus: action.text }
         case SET_PHOTO_SUCCESS:
-            debugger
             return { ...state, profile: { ...state.profile, photos: action.photos.data.photos } }
         case DELETE_POST:
             return { ...state, posts: state.posts.filter(p => p.id !== action.postID) }
@@ -67,8 +66,13 @@ export const updateTextStatus = (text) => async (dispatch) => {
 export const savePhoto = (filePhoto) => async (dispatch) => {
     let response = await ProfileAPI.savePhoto(filePhoto)
     if (response.resultCode === 0) {
-        debugger
         dispatch(setPhotoSuccess(response))
+    }
+}
+export const saveProfile = (profile) => async (dispatch) => {
+    let response = await ProfileAPI.saveProfile(profile)
+    if (response.resultCode === 0) {
+        // dispatch(setPhotoSuccess(response))
     }
 }
 
