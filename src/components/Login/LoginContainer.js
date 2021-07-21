@@ -12,8 +12,7 @@ class LoginContainer extends Component {
     }
 }
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth,
-    message: state.auth.messageError
+    isAuth: state.auth.isAuth
 })
 
 

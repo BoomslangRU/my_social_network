@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 import s from './Login.module.css'
 
 
-const Login = ({ authLogin, isAuth, message }) => {
+const Login = ({ authLogin, isAuth }) => {
 
     let [messageError, setMessageError] = useState(null)
 
