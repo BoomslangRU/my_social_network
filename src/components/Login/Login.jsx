@@ -1,12 +1,22 @@
+import { useState } from 'react'
 import { Form, Field } from 'react-final-form'
 import { Redirect } from 'react-router-dom'
 import s from './Login.module.css'
 
 
 const Login = ({ authLogin, isAuth, message }) => {
+
+    let [messageError, setMessageError] = useState(null)
+
     const onSubmit = (e) => {
         authLogin(e.login, e.password, e.rememberMe)
+            .catch(
+                (response) => {
+                    setMessageError(response)
+                }
+            )
     }
+
     const validate = (e) => {
         const errors = {}
         if (e.login && (e.login.length < 3 || e.login.length > 20)) {
@@ -61,7 +71,9 @@ const Login = ({ authLogin, isAuth, message }) => {
                         <div className={s.formRow}>
                             <Field name='rememberMe' component='input' type='checkbox' /> <p>remember me</p>
                         </div>
-                        <div className={s.errorMessage}>{message}</div>
+                        <div className={s.errorMessage}>
+                            {messageError}
+                        </div>
                         <div className={s.formRow}>
                             <button type='submit' >Login</button>
                         </div>

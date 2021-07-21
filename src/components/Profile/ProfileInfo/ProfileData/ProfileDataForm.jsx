@@ -3,24 +3,35 @@ import Preloader from '../../../common/Preloader/Preloader'
 import s from '../ProfileInfo.module.css'
 import styleForm from './ProfileDataForm.module.css'
 import styleButton from '../../../../styles/styleButton.module.css'
+import { useState } from 'react'
 
 const ProfileDataForm = (props) => {
+
+  let [messageError, setMessageError] = useState(null)
+
   const Contact = ({ contactTitle, contactValue }) => {
     return <div className={s.contactsMe}>
       <b>{contactTitle} :</b>
       {contactValue
         ? contactValue
-        : <span className={s.redTextNoInformation}>No information</span>
-      }</div>
+        : <span className={s.redTextNoInformation}>No information</span>}
+    </div>
   }
 
   const onSubmit = (e) => {
-    props.saveProfile(e).then (
-      () => {
-        props.exitToEditMode()
-      }
-    )
+    props.saveProfile(e)
+      .then(
+        () => {
+          props.exitToEditMode()
+        }
+      )
+      .catch(
+        (response) => {
+          setMessageError(response)
+        }
+      )
   }
+
   const validate = (e) => {
     const errors = {}
     if (!e.fullName && !props.profile.fullName) {
@@ -35,6 +46,7 @@ const ProfileDataForm = (props) => {
   if (!props.profile) {
     return <Preloader />
   }
+
   return (
     <Form onSubmit={onSubmit}
       initialValues={props.profile}
@@ -95,8 +107,24 @@ const ProfileDataForm = (props) => {
             {/* information contacts */}
             <div className={styleForm.formRow}>
               <h2>Contacts: </h2> {Object.keys(props.profile.contacts).map(key => {
-                return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]} />
-              })} </div>
+                return <div key={key}>
+                  <div className={styleForm.formRow}>
+                    <Field name={'contacts.' + key}
+                      render={({ input, meta }) => (
+                        <div>
+                          <b>{key}:</b> <input  {...input} type='text' />
+                          {meta.touched && (meta.error || meta.submitError)
+                            && <div className={s.error}>{meta.error || meta.submitError}</div>}
+                        </div>
+                      )}
+                    />
+                  </div>
+                </div>
+              })}
+            </div>
+            <div className={styleForm.errorMessage}>
+              {messageError ? messageError : undefined}
+            </div>
             <div className={styleButton.buttonBlock}>
               <button type='saveProfile' >save profile</button>
             </div>

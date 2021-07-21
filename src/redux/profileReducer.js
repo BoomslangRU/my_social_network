@@ -40,7 +40,7 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-// Action Creations
+// Action Creators
 const setTextStatus = (text) => ({ type: SET_TEXT_STATUS, text })
 const setUsersProfile = (profile) => ({ type: SET_USERS_PROFILE, profile })
 const setPhotoSuccess = (photos) => ({ type: SET_PHOTO_SUCCESS, photos })
@@ -48,7 +48,7 @@ export const onAddPost = (postText) => ({ type: ADD_POST, postText })
 export const deletePost = (postID) => ({ type: DELETE_POST, postID })
 
 
-// Thunk Creation
+// Thunk Creators
 export const getProfile = (userID) => async (dispatch) => {
     const response = await ProfileAPI.getProfile(userID)
     dispatch(setUsersProfile(response))
@@ -74,6 +74,8 @@ export const saveProfile = (profile) => async (dispatch, getState) => {
     const response = await ProfileAPI.saveProfile(profile)
     if (response.resultCode === 0) {
         dispatch(getProfile(userId))
+    } else {
+        return Promise.reject(response.messages[0])
     }
 }
 

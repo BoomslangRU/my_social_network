@@ -53,3 +53,11 @@
 .styleButton button {
     background-color: #D63301;
 }
+.errorMessage {
+    color: #D63301;
+    background-color: #FFCCBA;
+    font-style: italic;
+    width: 400px;
+    margin: 40px 15px;
+    text-align: center;
+}
