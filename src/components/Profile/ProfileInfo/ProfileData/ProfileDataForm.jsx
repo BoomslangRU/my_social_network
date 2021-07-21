@@ -123,7 +123,7 @@ const ProfileDataForm = (props) => {
               })}
             </div>
             <div className={styleForm.errorMessage}>
-              {messageError ? messageError : undefined}
+              {messageError}
             </div>
             <div className={styleButton.buttonBlock}>
               <button type='saveProfile' >save profile</button>
