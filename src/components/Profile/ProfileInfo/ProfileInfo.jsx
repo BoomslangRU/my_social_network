@@ -36,7 +36,7 @@ const ProfileInfo = (props) => {
         <div className={s.descriptionBlock} >
 
             {/* image avatar profile */}
-            <img src={!!props.profile.photos.large ? props.profile.photos.large : userPhoto} />
+            <img src={props.profile.photos.large ? props.profile.photos.large : userPhoto} />
 
             {/* input file for loading image avatar profile */}
             <div className={s.ownerItem}>

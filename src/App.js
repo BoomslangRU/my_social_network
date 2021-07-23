@@ -1,7 +1,7 @@
 import { Component, lazy } from 'react'
 import { connect, Provider } from 'react-redux'
 import { Route } from 'react-router'
-import { HashRouter, withRouter } from 'react-router-dom'
+import { HashRouter, Redirect, Switch, withRouter } from 'react-router-dom'
 import { compose } from 'redux'
 import './App.css'
 import HeaderContainer from './components/Header/HeaderContainer'
@@ -12,6 +12,7 @@ import { initializeAPP } from './redux/appReducer'
 import Preloader from './components/common/Preloader/Preloader'
 import store from './redux/storeRedux'
 import { withSuspense } from './hoc/withSuspense'
+import notFound from './assets/images/404.gif'
 
 const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'))
 const Music = lazy(() => import('./components/Music/Music'))
@@ -33,13 +34,17 @@ class App extends Component {
         <HeaderContainer />
         <Nav />
         <div className='app-wrapper-content'>
-          <Route path='/login' render={() => <LoginContainer />} />
-          <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
-          <Route path='/dialogs' render={withSuspense(DialogsContainer)} />
-          <Route path='/News' render={withSuspense(News)} />
-          <Route path='/music' render={withSuspense(Music)} />
-          <Route path='/users' render={withSuspense(UsersContainer)} />
-          <Route path='/setting' render={withSuspense(SettingContainer)} />
+          <Switch>
+            <Redirect exact from="/" to="/profile" />
+            <Route path='/login' render={() => <LoginContainer />} />
+            <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+            <Route path='/dialogs' render={withSuspense(DialogsContainer)} />
+            <Route path='/News' render={withSuspense(News)} />
+            <Route path='/music' render={withSuspense(Music)} />
+            <Route path='/users' render={withSuspense(UsersContainer)} />
+            <Route path='/setting' render={withSuspense(SettingContainer)} />
+            <Route path='*' render={() => <div> <img src={notFound} /> </div>} />
+          </Switch>
         </div>
       </div>
     )

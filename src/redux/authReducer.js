@@ -56,8 +56,7 @@ export const logout = () => async (dispatch) => {
 }
 export const getCaptchaUrl = () => async (dispatch) => {
     const response = await authAPI.getCaptchaUrl()
-    const captcha = response.url
-    dispatch(getCaptchaSuccess(captcha))
+    dispatch(getCaptchaSuccess(response.url))
 }
 
 export default authReducer
