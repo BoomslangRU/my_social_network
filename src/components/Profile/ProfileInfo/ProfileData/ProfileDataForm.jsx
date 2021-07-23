@@ -33,6 +33,7 @@ const ProfileDataForm = (props) => {
   }
 
   const validate = (e) => {
+    
     const errors = {}
     if (!e.fullName && !props.profile.fullName) {
       errors.fullName = 'Required'

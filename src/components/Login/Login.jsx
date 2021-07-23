@@ -4,18 +4,19 @@ import { Redirect } from 'react-router-dom'
 import s from './Login.module.css'
 
 
-const Login = ({ authLogin, isAuth }) => {
+const Login = ({ authLogin, isAuth, captcha }) => {
 
     let [messageError, setMessageError] = useState(null)
 
     const onSubmit = (e) => {
-        authLogin(e.login, e.password, e.rememberMe)
+        authLogin(e.login, e.password, e.rememberMe, e.captcha)
             .catch(
                 (response) => {
                     setMessageError(response)
                 }
             )
     }
+
 
     const validate = (e) => {
         const errors = {}
@@ -46,6 +47,8 @@ const Login = ({ authLogin, isAuth }) => {
                 <form className={s.railway} onSubmit={handleSubmit}>
                     <div className={s.loginItems}>
                         <h2>Login</h2>
+
+                        {/* Input login */}
                         <div className={s.formRow}>
                             <Field name='login'
                                 render={({ input, meta }) => (
@@ -57,6 +60,8 @@ const Login = ({ authLogin, isAuth }) => {
                                 )}
                             />
                         </div>
+
+                        {/* Input password  */}
                         <div className={s.formRow}>
                             <Field name='password'
                                 render={({ input, meta }) => (
@@ -74,9 +79,27 @@ const Login = ({ authLogin, isAuth }) => {
                         <div className={s.errorMessage}>
                             {messageError}
                         </div>
+
+                        {/* Captcha */}
+                        <div className={s.formRow}>
+                            {captcha &&
+                                <Field name='captcha'
+                                    render={({ input, meta }) => (
+                                        <div>
+                                            <img src={captcha} />
+                                            <input {...input} type='text' placeholder='Captcha' />
+                                            {meta.touched && (meta.error || meta.submitError)
+                                                && <div className={s.error}>{meta.error || meta.submitError}</div>}
+                                        </div>
+                                    )}
+                                />}
+                        </div>
+
+                        {/* Button submit */}
                         <div className={s.formRow}>
                             <button type='submit' >Login</button>
                         </div>
+
                     </div>
                 </form>
             )}
