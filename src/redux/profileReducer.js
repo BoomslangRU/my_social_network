@@ -5,6 +5,7 @@ const SET_USERS_PROFILE = 'profileReducer/SET_USERS_PROFILE'
 const SET_TEXT_STATUS = 'profilePage/SET_TEXT_STATUS'
 const DELETE_POST = 'profilePage/DELETE_POST'
 const SET_PHOTO_SUCCESS = 'profilePage/SET_PHOTO_SUCCESS'
+const SET_GLOBAL_ERROR = 'profilePage/SET_GLOBAL_ERROR'
 
 const initialState = {
     posts: [
@@ -12,7 +13,8 @@ const initialState = {
         { id: 2, message: 'It\'s my first post', likeCounter: 15 }
     ],
     profile: null,
-    usersStatus: ''
+    usersStatus: '',
+    globalError: 'test text error'
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -31,6 +33,8 @@ const profileReducer = (state = initialState, action) => {
             return { ...state, profile: action.profile }
         case SET_TEXT_STATUS:
             return { ...state, usersStatus: action.text }
+        case SET_GLOBAL_ERROR:
+            return { ...state, globalError: action.error }
         case SET_PHOTO_SUCCESS:
             return { ...state, profile: { ...state.profile, photos: action.photos.data.photos } }
         case DELETE_POST:
@@ -44,6 +48,7 @@ const profileReducer = (state = initialState, action) => {
 const setTextStatus = (text) => ({ type: SET_TEXT_STATUS, text })
 const setUsersProfile = (profile) => ({ type: SET_USERS_PROFILE, profile })
 const setPhotoSuccess = (photos) => ({ type: SET_PHOTO_SUCCESS, photos })
+export const setGlobalError = (error) => ({ type: SET_GLOBAL_ERROR, error })
 export const onAddPost = (postText) => ({ type: ADD_POST, postText })
 export const deletePost = (postID) => ({ type: DELETE_POST, postID })
 
@@ -58,9 +63,13 @@ export const getTextStatus = (userID) => async (dispatch) => {
     dispatch(setTextStatus(response))
 }
 export const updateTextStatus = (text) => async (dispatch) => {
-    const response = await ProfileAPI.updateUserStatus(text)
-    if (response.resultCode === 0) {
-        dispatch(setTextStatus(text))
+    try {
+        const response = await ProfileAPI.updateUserStatus(text)
+        if (response.resultCode === 0) {
+            dispatch(setTextStatus(text))
+        }
+    } catch (error) {
+        dispatch(setGlobalError(error))
     }
 }
 export const savePhoto = (filePhoto) => async (dispatch) => {

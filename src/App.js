@@ -1,4 +1,4 @@
-import { Component, lazy } from 'react'
+import { Component, lazy, StrictMode } from 'react'
 import { connect, Provider } from 'react-redux'
 import { Route } from 'react-router'
 import { HashRouter, Redirect, Switch, withRouter } from 'react-router-dom'
@@ -13,6 +13,7 @@ import Preloader from './components/common/Preloader/Preloader'
 import store from './redux/storeRedux'
 import { withSuspense } from './hoc/withSuspense'
 import notFound from './assets/images/404.gif'
+import ModalWindowErrorContainer from './components/common/ModalWindowError/ModalWindowErrorContainer'
 
 const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'))
 const Music = lazy(() => import('./components/Music/Music'))
@@ -33,6 +34,9 @@ class App extends Component {
       <div className='app-wrapper'>
         <HeaderContainer />
         <Nav />
+        <StrictMode>
+          <ModalWindowErrorContainer />
+        </StrictMode>
         <div className='app-wrapper-content'>
           <Switch>
             <Redirect exact from="/" to="/profile" />

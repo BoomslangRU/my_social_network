@@ -26,7 +26,7 @@ class UsersAPIComponent extends Component {
 }
 
 
-let mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({
     users: getUsers(state),
     pageSize: getPageSize(state),
     totalUsersCount: getTotalUsersCount(state),

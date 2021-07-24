@@ -21,10 +21,10 @@ const appReducer = (state = initialState, action) => {
 const initializeSuccess = () => ({ type: INITIALIZED_SUCCESS })
 
 // Thunk Creators
-export const initializeAPP = () => (dispatch) => {
-    let promise = dispatch(getAuthMe())
+export const initializeAPP = () => async (dispatch) => {
+    const promise = dispatch(getAuthMe())
     // Promise.all made for future expansion thunk
-    Promise.all([promise])
+    await Promise.all([promise])
         .then(() => {
             dispatch(initializeSuccess())
         })
