@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/Music/Music.jsx"],"names":["Music"],"mappings":"kIASeA,UARD,WACV,OACI","file":"static/js/6.cfcc9afd.chunk.js","sourcesContent":["\r\nconst Music = () => {\r\n    return (\r\n        <div>\r\n            Music\r\n        </div>\r\n    )\r\n}\r\n\r\nexport default Music"],"sourceRoot":""}

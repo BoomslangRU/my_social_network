@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/News/News.jsx"],"names":["News"],"mappings":"kIASeA,UARF,WACT,OACI","file":"static/js/7.f084c73c.chunk.js","sourcesContent":["\r\nconst News = () => {\r\n    return (\r\n        <div>\r\n            News\r\n        </div>\r\n    )\r\n}\r\n\r\nexport default News"],"sourceRoot":""}
