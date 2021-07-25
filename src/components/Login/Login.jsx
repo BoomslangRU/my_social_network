@@ -86,7 +86,7 @@ const Login = ({ authLogin, isAuth, captcha }) => {
                                 <Field name='captcha'
                                     render={({ input, meta }) => (
                                         <div>
-                                            <img src={captcha} />
+                                            <img src={captcha} alt='captcha' />
                                             <input {...input} type='text' placeholder='Captcha' />
                                             {meta.touched && (meta.error || meta.submitError)
                                                 && <div className={s.error}>{meta.error || meta.submitError}</div>}

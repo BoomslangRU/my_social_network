@@ -8,7 +8,7 @@ const Setting = ({ logout }) => {
     }
     return (
         <div className={s.singOut}>
-            <img src={logout_image}></img>
+            <img alt='logout' src={logout_image}  ></img>
             <NavLink onClick={clickLogout} to={'/login'}>Sing Out</NavLink>
         </div>
     )

@@ -5,7 +5,7 @@ import logo from '../../assets/images/logo_header.png'
 const Header = ({ isAuth, login }) => {
     return (
         <header className={s.header}>
-            <img src={logo}></img>
+            <img src={logo} alt='logo'></img>
             <div className={s.loginBlock}>
                 {isAuth ? <NavLink to={'/setting'}>{login}</NavLink> : <NavLink to={'/login'}>Login</NavLink>}
             </div>

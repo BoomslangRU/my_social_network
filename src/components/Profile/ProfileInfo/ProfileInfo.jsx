@@ -31,12 +31,12 @@ const ProfileInfo = (props) => {
 
         {/* image background profile  */}
         <div className={s.item}>
-            <img src={background}></img>
+            <img src={background} alt='background'></img>
         </div>
         <div className={s.descriptionBlock} >
 
             {/* image avatar profile */}
-            <img src={props.profile.photos.large ? props.profile.photos.large : userPhoto} />
+            <img src={props.profile.photos.large ? props.profile.photos.large : userPhoto} alt='user photos' />
 
             {/* input file for loading image avatar profile */}
             <div className={s.ownerItem}>

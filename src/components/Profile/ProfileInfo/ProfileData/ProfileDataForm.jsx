@@ -9,15 +9,6 @@ const ProfileDataForm = (props) => {
 
   let [messageError, setMessageError] = useState(null)
 
-  const Contact = ({ contactTitle, contactValue }) => {
-    return <div className={s.contactsMe}>
-      <b>{contactTitle} :</b>
-      {contactValue
-        ? contactValue
-        : <span className={s.redTextNoInformation}>No information</span>}
-    </div>
-  }
-
   const onSubmit = (e) => {
     props.saveProfile(e)
       .then(

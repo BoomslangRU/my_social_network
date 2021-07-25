@@ -7,6 +7,7 @@ import ProfileStatus from '../ProfileStatus/ProfileStatus'
 const ProfileInfo = (props) => {
 
     const Contact = ({ contactTitle, contactValue }) => {
+
         return <div className={s.contactsMe}>
             <b>{contactTitle} :</b>
             {contactValue
@@ -22,6 +23,7 @@ const ProfileInfo = (props) => {
             <div className={s.fullName}>{props.profile.fullName}
                 {/* image job search status */}
                 <img src={props.profile.lookingForAJob ? notJob : job}
+                    alt='status looking for work'
                     title={props.profile.lookingForAJob ? 'looking for work' : 'not looking for work'} />
             </div>
 

@@ -1,4 +1,4 @@
-import { Component, lazy, StrictMode } from 'react'
+import { Component, lazy } from 'react'
 import { connect, Provider } from 'react-redux'
 import { Route } from 'react-router'
 import { HashRouter, Redirect, Switch, withRouter } from 'react-router-dom'
@@ -34,9 +34,7 @@ class App extends Component {
       <div className='app-wrapper'>
         <HeaderContainer />
         <Nav />
-        <StrictMode>
-          <ModalWindowErrorContainer />
-        </StrictMode>
+        <ModalWindowErrorContainer />
         <div className='app-wrapper-content'>
           <Switch>
             <Redirect exact from="/" to="/profile" />
@@ -47,7 +45,7 @@ class App extends Component {
             <Route path='/music' render={withSuspense(Music)} />
             <Route path='/users' render={withSuspense(UsersContainer)} />
             <Route path='/setting' render={withSuspense(SettingContainer)} />
-            <Route path='*' render={() => <div> <img src={notFound} /> </div>} />
+            <Route path='*' render={() => <div> <img src={notFound} alt="not found" /> </div>} />
           </Switch>
         </div>
       </div>

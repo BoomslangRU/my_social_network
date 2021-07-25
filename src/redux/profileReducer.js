@@ -14,7 +14,7 @@ const initialState = {
     ],
     profile: null,
     usersStatus: '',
-    globalError: 'test text error'
+    globalError: null
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -55,12 +55,20 @@ export const deletePost = (postID) => ({ type: DELETE_POST, postID })
 
 // Thunk Creators
 export const getProfile = (userID) => async (dispatch) => {
-    const response = await ProfileAPI.getProfile(userID)
-    dispatch(setUsersProfile(response))
+    try {
+        const response = await ProfileAPI.getProfile(userID)
+        dispatch(setUsersProfile(response))
+    } catch (error) {
+        dispatch(setGlobalError(error.message))
+    }
 }
 export const getTextStatus = (userID) => async (dispatch) => {
-    const response = await ProfileAPI.getUserStatus(userID)
-    dispatch(setTextStatus(response))
+    try {
+        const response = await ProfileAPI.getUserStatus(userID)
+        dispatch(setTextStatus(response))
+    } catch (error) {
+        dispatch(setGlobalError(error.message))
+    }
 }
 export const updateTextStatus = (text) => async (dispatch) => {
     try {
@@ -69,22 +77,30 @@ export const updateTextStatus = (text) => async (dispatch) => {
             dispatch(setTextStatus(text))
         }
     } catch (error) {
-        dispatch(setGlobalError(error))
+        dispatch(setGlobalError(error.message))
     }
 }
 export const savePhoto = (filePhoto) => async (dispatch) => {
-    const response = await ProfileAPI.savePhoto(filePhoto)
-    if (response.resultCode === 0) {
-        dispatch(setPhotoSuccess(response))
+    try {
+        const response = await ProfileAPI.savePhoto(filePhoto)
+        if (response.resultCode === 0) {
+            dispatch(setPhotoSuccess(response))
+        }
+    } catch (error) {
+        dispatch(setGlobalError(error.message))
     }
 }
 export const saveProfile = (profile) => async (dispatch, getState) => {
-    const userId = getState().auth.id
-    const response = await ProfileAPI.saveProfile(profile)
-    if (response.resultCode === 0) {
-        dispatch(getProfile(userId))
-    } else {
-        return Promise.reject(response.messages[0])
+    try {
+        const userId = getState().auth.id
+        const response = await ProfileAPI.saveProfile(profile)
+        if (response.resultCode === 0) {
+            dispatch(getProfile(userId))
+        } else {
+            return Promise.reject(response.messages[0])
+        }
+    } catch (error) {
+        dispatch(setGlobalError(error.message))
     }
 }
 
