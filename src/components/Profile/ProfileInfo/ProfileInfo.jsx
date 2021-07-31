@@ -27,36 +27,38 @@ const ProfileInfo = (props) => {
     if (!props.profile) {
         return <Preloader />
     }
-    return <div className={s.profileItems}>
+    return (
+        <div className={s.profileItems}>
 
-        {/* image background profile  */}
-        <div className={s.item}>
-            <img src={background} alt='background'></img>
-        </div>
-        <div className={s.descriptionBlock} >
+            {/* image background profile  */}
+            <div className={s.item}>
+                <img src={background} alt='background'></img>
+            </div>
+            <div className={s.descriptionBlock} >
 
-            {/* image avatar profile */}
-            <img src={props.profile.photos.large ? props.profile.photos.large : userPhoto} alt='user photos' />
+                {/* image avatar profile */}
+                <img src={props.profile.photos.large ? props.profile.photos.large : userPhoto} alt='user photos' />
 
-            {/* input file for loading image avatar profile */}
-            <div className={s.ownerItem}>
-                {!props.isOwner && <input className={styleInput} type={'file'} onChange={onManePhotoSelected} />}
+                {/* input file for loading image avatar profile */}
+                <div className={s.ownerItem}>
+                    {!props.isOwner && <input className={styleInput} type={'file'} onChange={onManePhotoSelected} />}
+                </div>
+
+                {/* button for edit profile */}
+                <div className={styleButton.buttonBlock}>
+                    {!props.isOwner && <button onClick={goToEditMode}><span>edit profile</span></button>}
+                </div>
+
             </div>
 
-            {/* button for edit profile */}
-            <div className={styleButton.buttonBlock}>
-                {!props.isOwner && <button onClick={goToEditMode}><span>edit profile</span></button>}
+            {/* edit mode */}
+            <div>
+                {editMode
+                    ? <ProfileDataForm {...props} exitToEditMode={exitToEditMode} />
+                    : <ProfileData {...props} />}
             </div>
-
         </div>
-
-        {/* edit mode */}
-        <div>
-            {editMode
-                ? <ProfileDataForm {...props} exitToEditMode={exitToEditMode} />
-                : <ProfileData {...props} />}
-        </div>
-    </div>
+    )
 }
 
 

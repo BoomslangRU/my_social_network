@@ -7,6 +7,7 @@ const DialogForm = (props) => {
     const onSubmit = (e) => {
         if (e.massageBody) {
         props.sendMessage(e.massageBody)
+        e.massageBody = ''
         }
     }
     const validate = (e) => {

@@ -5,6 +5,7 @@ import { Component } from 'react'
 
 
 class MyPostsContainer extends Component {
+
     render() {
         return (
             <MyPosts {...this.props} />
@@ -12,6 +13,7 @@ class MyPostsContainer extends Component {
     }
 }
 const mapStateToProps = (state) => ({
+    profile: state.profilePage.profile,
     newPostText: state.profilePage.newPostText,
     posts: state.profilePage.posts,
     authorizedUserId: state.auth.id,

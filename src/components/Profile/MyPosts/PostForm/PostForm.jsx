@@ -6,6 +6,7 @@ const PostForm = ({ onAddPost }) => {
   const onSubmit = (e) => {
     if (e.newPostText) {
       onAddPost(e.newPostText)
+      e.newPostText = ''
     }
   }
   const validate = (e) => {

@@ -1,9 +1,11 @@
 import s from './Post.module.css'
+import userPhoto from '../../../../assets/images/users.png'
 
-const Post = ({ message, likeCounter }) => {
+const Post = ({ message, likeCounter, photo }) => {
+
   return (
     <div className={s.item}>
-      <img src='https://pixelbox.ru/wp-content/uploads/2020/12/ava-vk-cats-70.jpg' alt='avatar for post'></img>
+      <img src={photo ? photo : userPhoto} alt='avatar for post'></img>
       {message}
       <div>
         <span>{likeCounter} Like</span>
