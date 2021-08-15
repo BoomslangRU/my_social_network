@@ -1,14 +1,14 @@
 import s from './Post.module.css'
 import userPhoto from '../../../../assets/images/users.png'
 
-const Post = ({ message, likeCounter, photo }) => {
+const Post = (props) => {
 
   return (
     <div className={s.item}>
-      <img src={photo ? photo : userPhoto} alt='avatar for post'></img>
-      {message}
+      <img src={props.profile.photos.small ? props.profile.photos.small : userPhoto} alt='avatar for post'></img>
+      {props.message}
       <div>
-        <span>{likeCounter} Like</span>
+        <span>{props.likeCounter} Like</span>
       </div>
     </div>
   )

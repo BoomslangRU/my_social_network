@@ -52,7 +52,8 @@ const ProfileDataForm = (props) => {
               <Field name='fullName'
                 render={({ input, meta }) => (
                   <div>
-                    <b>Your Nickname?</b> <input {...input} type='text' />
+                    <b>Your Nickname?</b> 
+                    <input {...input} type='text' />
                     {meta.touched && (meta.error || meta.submitError)
                       && <div className={styleForm.error}>{meta.error || meta.submitError}</div>}
                   </div>

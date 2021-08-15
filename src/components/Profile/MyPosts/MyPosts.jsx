@@ -4,7 +4,6 @@ import Post from './Post/Post'
 import PostForm from './PostForm/PostForm'
 import Preloader from '../../common/Preloader/Preloader'
 
-
 // React.memo in this version it does not make sense
 // and additions for educational purposes
 const MyPosts = memo(props => {
@@ -14,8 +13,7 @@ const MyPosts = memo(props => {
   }
 
   let postsElements = props.posts.map(p =>
-    <Post key={p.id} photo={props.profile.photos.small} message={p.message} likeCounter={p.likeCounter} />)
-
+    <Post key={p.id} {...props} message={p.message} likeCounter={p.likeCounter} />)
   return (
     <div className={s.item}>
       <div className={s.postBlock}>
