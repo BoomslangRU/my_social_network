@@ -4,6 +4,14 @@ Email: free@samuraijs.com
 
 Password: free
 
+# or the access of the author of the project (be careful the server may block if you use this access often from different devices) 
+
+Email: eilinals@mail.ru
+
+Password: 1234
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
