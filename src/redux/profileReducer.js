@@ -8,40 +8,40 @@ const SET_PHOTO_SUCCESS = 'profilePage/SET_PHOTO_SUCCESS'
 const SET_GLOBAL_ERROR = 'profilePage/SET_GLOBAL_ERROR'
 
 const initialState = {
-    posts: [
-        { id: 1, message: 'Hi, how are you?', likeCounter: 12 },
-        { id: 2, message: 'It\'s my first post', likeCounter: 15 }
-    ],
-    profile: null,
-    usersStatus: '',
-    globalError: null
+	posts: [
+		{ id: 1, message: 'Hi, how are you?', likeCounter: 12 },
+		{ id: 2, message: 'It\'s my first post', likeCounter: 15 }
+	],
+	profile: null,
+	usersStatus: '',
+	globalError: null
 }
 
 const profileReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case ADD_POST:
-            let newPost = {
-                id: 5,
-                message: action.postText,
-                likeCounter: 0
-            }
-            return {
-                ...state,
-                posts: [...state.posts, newPost],
-            }
-        case SET_USERS_PROFILE:
-            return { ...state, profile: action.profile }
-        case SET_TEXT_STATUS:
-            return { ...state, usersStatus: action.text }
-        case SET_GLOBAL_ERROR:
-            return { ...state, globalError: action.error }
-        case SET_PHOTO_SUCCESS:
-            return { ...state, profile: { ...state.profile, photos: action.photos.data.photos } }
-        case DELETE_POST:
-            return { ...state, posts: state.posts.filter(p => p.id !== action.postID) }
-        default:
-            return state
-    }
+	switch (action.type) {
+		case ADD_POST:
+			let newPost = {
+				id: 5,
+				message: action.postText,
+				likeCounter: 0
+			}
+			return {
+				...state,
+				posts: [...state.posts, newPost],
+			}
+		case SET_USERS_PROFILE:
+			return { ...state, profile: action.profile }
+		case SET_TEXT_STATUS:
+			return { ...state, usersStatus: action.text }
+		case SET_GLOBAL_ERROR:
+			return { ...state, globalError: action.error }
+		case SET_PHOTO_SUCCESS:
+			return { ...state, profile: { ...state.profile, photos: action.photos.data.photos } }
+		case DELETE_POST:
+			return { ...state, posts: state.posts.filter(p => p.id !== action.postID) }
+		default:
+			return state
+	}
 }
 
 // Action Creators
@@ -55,53 +55,53 @@ export const deletePost = (postID) => ({ type: DELETE_POST, postID })
 
 // Thunk Creators
 export const getProfile = (userID) => async (dispatch) => {
-    try {
-        const response = await ProfileAPI.getProfile(userID)
-        dispatch(setUsersProfile(response))
-    } catch (error) {
-        dispatch(setGlobalError(error.message))
-    }
+	try {
+		const response = await ProfileAPI.getProfile(userID)
+		dispatch(setUsersProfile(response))
+	} catch (error) {
+		dispatch(setGlobalError(error.message))
+	}
 }
 export const getTextStatus = (userID) => async (dispatch) => {
-    try {
-        const response = await ProfileAPI.getUserStatus(userID)
-        dispatch(setTextStatus(response))
-    } catch (error) {
-        dispatch(setGlobalError(error.message))
-    }
+	try {
+		const response = await ProfileAPI.getUserStatus(userID)
+		dispatch(setTextStatus(response))
+	} catch (error) {
+		dispatch(setGlobalError(error.message))
+	}
 }
 export const updateTextStatus = (text) => async (dispatch) => {
-    try {
-        const response = await ProfileAPI.updateUserStatus(text)
-        if (response.resultCode === 0) {
-            dispatch(setTextStatus(text))
-        }
-    } catch (error) {
-        dispatch(setGlobalError(error.message))
-    }
+	try {
+		const response = await ProfileAPI.updateUserStatus(text)
+		if (response.resultCode === 0) {
+			dispatch(setTextStatus(text))
+		}
+	} catch (error) {
+		dispatch(setGlobalError(error.message))
+	}
 }
 export const savePhoto = (filePhoto) => async (dispatch) => {
-    try {
-        const response = await ProfileAPI.savePhoto(filePhoto)
-        if (response.resultCode === 0) {
-            dispatch(setPhotoSuccess(response))
-        }
-    } catch (error) {
-        dispatch(setGlobalError(error.message))
-    }
+	try {
+		const response = await ProfileAPI.savePhoto(filePhoto)
+		if (response.resultCode === 0) {
+			dispatch(setPhotoSuccess(response))
+		}
+	} catch (error) {
+		dispatch(setGlobalError(error.message))
+	}
 }
 export const saveProfile = (profile) => async (dispatch, getState) => {
-    try {
-        const userId = getState().auth.id
-        const response = await ProfileAPI.saveProfile(profile)
-        if (response.resultCode === 0) {
-            dispatch(getProfile(userId))
-        } else {
-            return Promise.reject(response.messages[0])
-        }
-    } catch (error) {
-        dispatch(setGlobalError(error.message))
-    }
+	try {
+		const userId = getState().auth.id
+		const response = await ProfileAPI.saveProfile(profile)
+		if (response.resultCode === 0) {
+			dispatch(getProfile(userId))
+		} else {
+			return Promise.reject(response.messages[0])
+		}
+	} catch (error) {
+		dispatch(setGlobalError(error.message))
+	}
 }
 
 export default profileReducer

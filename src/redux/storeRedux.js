@@ -7,11 +7,11 @@ import thunkMiddleware from 'redux-thunk'
 import appReducer from './appReducer'
 
 const reducers = combineReducers({
-    app: appReducer,
-    profilePage: profileReducer,
-    dialogsPage: dialogsReducer,
-    usersPage: usersReducer,
-    auth: authReducer
+	app: appReducer,
+	profilePage: profileReducer,
+	dialogsPage: dialogsReducer,
+	usersPage: usersReducer,
+	auth: authReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

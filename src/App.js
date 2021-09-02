@@ -1,7 +1,7 @@
 import { Component, lazy } from 'react'
 import { connect, Provider } from 'react-redux'
 import { Route } from 'react-router'
-import { HashRouter, Redirect, Switch, withRouter } from 'react-router-dom'
+import { BrowserRouter, Redirect, Switch, withRouter } from 'react-router-dom'
 import { compose } from 'redux'
 import './App.css'
 import HeaderContainer from './components/Header/HeaderContainer'
@@ -23,53 +23,53 @@ const UsersContainer = lazy(() => import('./components/Users/UsersContainer'))
 
 
 class App extends Component {
-  componentDidMount() {
-    this.props.initializeAPP()
-  }
-  render() {
-    if (!this.props.initialize) {
-      return <Preloader />
-    }
-    return (
-      <div className='app-wrapper'>
-        <HeaderContainer />
-        <Nav />
-        <ModalWindowErrorContainer />
-        <div className='app-wrapper-content'>
-          <Switch>
-            <Redirect exact from="/" to="/profile" />
-            <Route path='/login' render={() => <LoginContainer />} />
-            <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
-            <Route path='/dialogs' render={withSuspense(DialogsContainer)} />
-            <Route path='/News' render={withSuspense(News)} />
-            <Route path='/music' render={withSuspense(Music)} />
-            <Route path='/users' render={withSuspense(UsersContainer)} />
-            <Route path='/setting' render={withSuspense(SettingContainer)} />
-            <Route path='*' render={() => <div> <img src={notFound} alt="not found" /> </div>} />
-          </Switch>
-        </div>
-      </div>
-    )
-  }
+	componentDidMount() {
+		this.props.initializeAPP()
+	}
+	render() {
+		if (!this.props.initialize) {
+			return <Preloader />
+		}
+		return (
+			<div className='app-wrapper'>
+				<HeaderContainer />
+				<Nav />
+				<ModalWindowErrorContainer />
+				<div className='app-wrapper-content'>
+					<Switch>
+						<Redirect exact from="/" to="/profile" />
+						<Route path='/login' render={() => <LoginContainer />} />
+						<Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+						<Route path='/dialogs' render={withSuspense(DialogsContainer)} />
+						<Route path='/News' render={withSuspense(News)} />
+						<Route path='/music' render={withSuspense(Music)} />
+						<Route path='/users' render={withSuspense(UsersContainer)} />
+						<Route path='/setting' render={withSuspense(SettingContainer)} />
+						<Route path='*' render={() => <div> <img src={notFound} alt="not found" /> </div>} />
+					</Switch>
+				</div>
+			</div>
+		)
+	}
 }
 
 const MainApp = () => {
-  return (
-    <HashRouter >
-      <Provider store={store}>
-        <AppContainer />
-      </Provider>
-    </HashRouter>
-  )
+	return (
+		<BrowserRouter>
+			<Provider store={store}>
+				<AppContainer />
+			</Provider>
+		</BrowserRouter>
+	)
 }
 
 const mapStateToProps = (state) => ({
-  initialize: state.app.initialize
+	initialize: state.app.initialize
 })
 
 const AppContainer = compose(
-  withRouter,
-  connect(mapStateToProps, { initializeAPP })
+	withRouter,
+	connect(mapStateToProps, { initializeAPP })
 )(App)
 
 export default MainApp
