@@ -26,8 +26,8 @@ const appReducer = (state = initialState, action: any): initialStateType => {
 type initializeSuccessActionType = {
 	type: typeof INITIALIZED_SUCCESS
 }
-
-const initializeSuccess = (): initializeSuccessActionType => ({ type: INITIALIZED_SUCCESS })
+const initializeSuccess = ()
+	: initializeSuccessActionType => ({ type: INITIALIZED_SUCCESS })
 
 // Thunk Creators
 export const initializeAPP = () => async (dispatch: any) => {
