@@ -1,4 +1,5 @@
 import { ProfileAPI } from '../api/api'
+import { photosType, postsType, profileType } from '../types/types'
 
 const ADD_POST = 'ADD_POST'
 const SET_USERS_PROFILE = 'profileReducer/SET_USERS_PROFILE'
@@ -7,30 +8,20 @@ const DELETE_POST = 'profilePage/DELETE_POST'
 const SET_PHOTO_SUCCESS = 'profilePage/SET_PHOTO_SUCCESS'
 const SET_GLOBAL_ERROR = 'profilePage/SET_GLOBAL_ERROR'
 
-type initialStateType = {
-	posts: Array<
-		{
-			id: number
-			message: string
-			likeCounter: number
-		}
-	>
-	profile: null | object[]
-	usersStatus: string
-	globalError: any
-}
 
-const initialState: initialStateType = {
+const initialState = {
 	posts: [
 		{ id: 1, message: 'Hi, how are you?', likeCounter: 12 },
 		{ id: 2, message: 'It\'s my first post', likeCounter: 15 }
-	],
-	profile: null,
+	] as Array<postsType>,
+	profile: null as profileType | null,
 	usersStatus: '',
 	globalError: null
 }
 
-const profileReducer = (state = initialState, action: any) => {
+export type initialStateType = typeof initialState
+
+const profileReducer = (state = initialState, action: any): initialStateType => {
 	switch (action.type) {
 		case ADD_POST:
 			let newPost = {
@@ -49,7 +40,7 @@ const profileReducer = (state = initialState, action: any) => {
 		case SET_GLOBAL_ERROR:
 			return { ...state, globalError: action.error }
 		case SET_PHOTO_SUCCESS:
-			return { ...state, profile: { ...state.profile, photos: action.photos.data.photos } }
+			return { ...state, profile: { ...state.profile, photos: action.photos.data.photos } as profileType }
 		case DELETE_POST:
 			return { ...state, posts: state.posts.filter(p => p.id !== action.postID) }
 		default:
@@ -64,11 +55,11 @@ type setTextStatusActionType = {
 }
 type setUsersProfileActionType = {
 	type: typeof SET_USERS_PROFILE
-	profile: boolean | object[]
+	profile: null | profileType
 }
 type setPhotoSuccessActionType = {
 	type: typeof SET_PHOTO_SUCCESS
-	photos: any
+	photos: null | photosType
 }
 export type setGlobalErrorActionType = {
 	type: typeof SET_GLOBAL_ERROR
@@ -85,9 +76,9 @@ export type deletePostActionType = {
 
 const setTextStatus = (text: string)
 	: setTextStatusActionType => ({ type: SET_TEXT_STATUS, text })
-const setUsersProfile = (profile: boolean | object[])
+const setUsersProfile = (profile: null | profileType)
 	: setUsersProfileActionType => ({ type: SET_USERS_PROFILE, profile })
-const setPhotoSuccess = (photos: any)
+const setPhotoSuccess = (photos: null | photosType)
 	: setPhotoSuccessActionType => ({ type: SET_PHOTO_SUCCESS, photos })
 export const setGlobalError = (error: string)
 	: setGlobalErrorActionType => ({ type: SET_GLOBAL_ERROR, error })

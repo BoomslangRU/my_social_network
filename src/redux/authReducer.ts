@@ -4,21 +4,15 @@ import { authAPI } from '../api/api'
 const SET_USER_DATA = 'auth/SET_USER_DATA'
 const GET_CAPTCHA_URL = 'auth/GET_CAPTCHA_URL'
 
-type initialStateType = {
-	id: null | string
-	login: null | string
-	email: null | string
-	isAuth: boolean
-	captchaUrlSuccess: null | any
+const initialState = {
+	id: null as null | string,
+	login: null as null | string,
+	email: null as null | string,
+	isAuth: false,
+	captchaUrlSuccess: null as null | string
 }
 
-const initialState: initialStateType = {
-	id: null,
-	login: null,
-	email: null,
-	isAuth: false,
-	captchaUrlSuccess: null
-}
+export type initialStateType = typeof initialState
 
 const authReducer = (state = initialState, action: any): initialStateType => {
 	switch (action.type) {
@@ -32,17 +26,24 @@ const authReducer = (state = initialState, action: any): initialStateType => {
 }
 
 // Action Creators
+type dataType = {
+	id: null | string
+	login: null | string
+	email: null | string
+	isAuth: boolean
+}
 type setAuthUserDataActionType = {
 	type: typeof SET_USER_DATA
-	data: {}
-}
-type getCaptchaUrlActionType = {
-	type: typeof GET_CAPTCHA_URL
-	captchaUrl: any
+	data: dataType
 }
 const setAuthUserData = (id: null | string, login: null | string, email: null | string, isAuth: boolean)
 	: setAuthUserDataActionType => ({ type: SET_USER_DATA, data: { id, login, email, isAuth } })
-const getCaptchaSuccess = (captchaUrl: any)
+
+type getCaptchaUrlActionType = {
+	type: typeof GET_CAPTCHA_URL
+	captchaUrl: null | string
+}
+const getCaptchaSuccess = (captchaUrl: null | string)
 	: getCaptchaUrlActionType => ({ type: GET_CAPTCHA_URL, captchaUrl })
 
 
