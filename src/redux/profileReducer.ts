@@ -53,37 +53,41 @@ type setTextStatusActionType = {
 	type: typeof SET_TEXT_STATUS
 	text: string
 }
+const setTextStatus = (text: string)
+	: setTextStatusActionType => ({ type: SET_TEXT_STATUS, text })
+
 type setUsersProfileActionType = {
 	type: typeof SET_USERS_PROFILE
-	profile: null | profileType
+	profile: profileType
 }
+const setUsersProfile = (profile: profileType)
+	: setUsersProfileActionType => ({ type: SET_USERS_PROFILE, profile })
+
 type setPhotoSuccessActionType = {
 	type: typeof SET_PHOTO_SUCCESS
-	photos: null | photosType
+	photos: photosType
 }
+const setPhotoSuccess = (photos: photosType)
+	: setPhotoSuccessActionType => ({ type: SET_PHOTO_SUCCESS, photos })
+
 export type setGlobalErrorActionType = {
 	type: typeof SET_GLOBAL_ERROR
 	error: string
 }
+export const setGlobalError = (error: string)
+	: setGlobalErrorActionType => ({ type: SET_GLOBAL_ERROR, error })
+
 export type onAddPostActionType = {
 	type: typeof ADD_POST
 	postText: string
 }
+export const onAddPost = (postText: string)
+	: onAddPostActionType => ({ type: ADD_POST, postText })
+
 export type deletePostActionType = {
 	type: typeof DELETE_POST
 	postID: number
 }
-
-const setTextStatus = (text: string)
-	: setTextStatusActionType => ({ type: SET_TEXT_STATUS, text })
-const setUsersProfile = (profile: null | profileType)
-	: setUsersProfileActionType => ({ type: SET_USERS_PROFILE, profile })
-const setPhotoSuccess = (photos: null | photosType)
-	: setPhotoSuccessActionType => ({ type: SET_PHOTO_SUCCESS, photos })
-export const setGlobalError = (error: string)
-	: setGlobalErrorActionType => ({ type: SET_GLOBAL_ERROR, error })
-export const onAddPost = (postText: string)
-	: onAddPostActionType => ({ type: ADD_POST, postText })
 export const deletePost = (postID: number)
 	: deletePostActionType => ({ type: DELETE_POST, postID })
 

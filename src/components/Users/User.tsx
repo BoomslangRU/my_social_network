@@ -1,9 +1,17 @@
 import s from './Users.module.css'
 import userPhoto from '../../assets/images/users.png'
 import { NavLink } from 'react-router-dom'
+import { FC } from 'react'
 
 
-const User = ({ user, followingInProgress, followUsers, unfollowUsers }) => {
+type propsType = {
+    user: any
+    followingInProgress: Array<number>
+    followUsers: (id: number) => void
+    unfollowUsers: (id: number) => void
+}
+
+const User: FC<propsType> = ({ user, followingInProgress, followUsers, unfollowUsers }) => {
     return <div>
         <div className={s.usersItem}>
             <div className={s.avatarItem}>

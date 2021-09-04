@@ -1,12 +1,19 @@
-import { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import s from './Pagination.module.css'
 
+type propsType = {
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
+    onPageChanged: (currentPage: number) => void
+    setCurrentPage: (currentPage: number) => void
+}
 
-const Pagination = ({ totalUsersCount, pageSize, currentPage, onPageChanged, setCurrentPage }) => {
-    let pagesCount = Math.ceil(totalUsersCount / pageSize)
-    let pages = []
-    let [prevPage, setPrevPage] = useState(false)
-    let [nextPage, setNextPage] = useState(false)
+const Pagination: FC<propsType> = ({ totalUsersCount, pageSize, currentPage, onPageChanged, setCurrentPage }) => {
+    const pagesCount = Math.ceil(totalUsersCount / pageSize)
+    const pages = []
+    const [prevPage, setPrevPage] = useState<boolean>(false)
+    const [nextPage, setNextPage] = useState<boolean>(false)
 
     useEffect(() => {
         if (currentPage > 9) {
@@ -59,15 +66,14 @@ const Pagination = ({ totalUsersCount, pageSize, currentPage, onPageChanged, set
             pages.push(i)
         }
     }
-
     return (
         <div className={s.selectedPage}>
-            {!!prevPage && <span onClick={prevClickSpan}>prev  </span>}
+            {prevPage && <span onClick={prevClickSpan}>prev  </span>}
             {pages.map(p => {
                 return <span className={currentPage === p ? s.activeSelectedPage : undefined}
                     key={p} onClick={() => { onPageChanged(p) }} >{p} </span>
             })}
-            {!!nextPage && <span onClick={nextClickSpan}>  next</span>}
+            {nextPage && <span onClick={nextClickSpan}>  next</span>}
         </div>
     )
 }

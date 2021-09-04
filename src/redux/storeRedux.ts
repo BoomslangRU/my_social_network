@@ -14,11 +14,16 @@ const reducers = combineReducers({
 	auth: authReducer
 })
 
+type reducersType = typeof reducers
+export type RootStore = ReturnType<reducersType>
+
+
+//@ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
 
-// let store = createStore(reducers, applyMiddleware(thunkMiddleware))
-
+// const store = createStore(reducers, applyMiddleware(thunkMiddleware))
+//@ts-ignore
 window.__store__ = store
 
 export default store
