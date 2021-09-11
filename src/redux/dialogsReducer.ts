@@ -25,9 +25,9 @@ const initialState = {
 	] as Array<messagesType>
 }
 
-export type initialStateType = typeof initialState
+export type initialStateDialogsPageType = typeof initialState
 
-const dialogsReducer = (state = initialState, action: any): initialStateType => {
+const dialogsReducer = (state = initialState, action: any): initialStateDialogsPageType => {
 	switch (action.type) {
 		case SEND_MESSAGE:
 			return {

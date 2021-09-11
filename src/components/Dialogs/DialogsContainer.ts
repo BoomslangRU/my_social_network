@@ -2,12 +2,12 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import { sendMessage } from '../../redux/dialogsReducer'
+import { RootStore } from '../../redux/storeRedux'
 import Dialogs from './Dialogs'
 
-let mapStateToProps = (state) => ({
+let mapStateToProps = (state: RootStore) => ({
     dialogsPage: state.dialogsPage
 })
-
 
 export default compose(
     withAuthRedirect,

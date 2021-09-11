@@ -4,7 +4,7 @@ import job from '../../../../assets/images/job.png'
 import ProfileStatus from '../ProfileStatus/ProfileStatus'
 
 
-const ProfileInfo = (props) => {
+const ProfileInfo = props => {
 
     const Contact = ({ contactTitle, contactValue }) => {
 

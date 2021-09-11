@@ -1,16 +1,21 @@
 import { Form, Field } from 'react-final-form'
 import s from './PostForm.module.css'
 import styleButton from '../../../../styles/styleButton.module.css'
+import { FC } from 'react'
 
-const PostForm = ({ onAddPost }) => {
-  const onSubmit = (e) => {
+type propsType = {
+  onAddPost: any
+}
+
+const PostForm: FC<propsType> = ({ onAddPost }) => {
+  const onSubmit = (e: any) => {
     if (e.newPostText) {
       onAddPost(e.newPostText)
       e.newPostText = ''
     }
   }
-  const validate = (e) => {
-    const errors = {}
+  const validate = (e: any) => {
+    const errors: any = {}
     if (e.newPostText && e.newPostText.length > 100) {
       errors.newPostText = 'post must not exceed 100 characters'
     }

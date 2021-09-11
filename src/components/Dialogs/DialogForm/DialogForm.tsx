@@ -1,19 +1,24 @@
 import { Form, Field } from 'react-final-form'
 import s from './DialogsForm.module.css'
 import styleButton from '../../../styles/styleButton.module.css'
+import { FC } from 'react'
 
-const DialogForm = (props) => {
+type propsType = {
+    sendMessage: any
+}
 
-    const onSubmit = (e) => {
+const DialogForm: FC<propsType> = ({ sendMessage }) => {
+
+    const onSubmit = (e: any) => {
         if (e.massageBody) {
-        props.sendMessage(e.massageBody)
-        e.massageBody = ''
+            sendMessage(e.massageBody)
+            e.massageBody = ''
         }
     }
-    const validate = (e) => {
-        const errors = {}
+    const validate = (e: any) => {
+        const errors: any = {}
         if (e.massageBody && e.massageBody.length > 80) {
-          errors.massageBody = 'massages must not exceed 80 characters'
+            errors.massageBody = 'massages must not exceed 80 characters'
         }
         return errors
     }

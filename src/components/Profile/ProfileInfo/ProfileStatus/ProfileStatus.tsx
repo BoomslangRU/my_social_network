@@ -1,15 +1,20 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, FC } from 'react'
 import s from './ProfileStatus.module.css'
 
-const ProfileStatus = (props) => {
-    let [editMode, setEditMode] = useState(false)
-    let [usersStatus, setUsersStatus] = useState(props.usersStatus)
+type propsType = {
+    usersStatus: string
+    updateTextStatus: any
+}
+
+const ProfileStatus: FC<propsType> = props => {
+    const [editMode, setEditMode] = useState(false)
+    const [usersStatus, setUsersStatus] = useState(props.usersStatus)
 
     useEffect(() => {
         setUsersStatus(props.usersStatus)
     }, [props.usersStatus])
 
-    const onStatusChange = (e) => {
+    const onStatusChange = (e: any) => {
         setUsersStatus(e.currentTarget.value)
     }
     const activateEditMode = () => {

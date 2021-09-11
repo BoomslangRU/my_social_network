@@ -1,25 +1,30 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 import { Form, Field } from 'react-final-form'
 import { Redirect } from 'react-router-dom'
 import s from './Login.module.css'
 
+type propsType = {
+    isAuth: boolean
+    captcha: null | string
+    authLogin: any
+}
 
-const Login = ({ authLogin, isAuth, captcha }) => {
+const Login: FC<propsType> = ({ authLogin, isAuth, captcha }) => {
 
     let [messageError, setMessageError] = useState(null)
 
-    const onSubmit = (e) => {
+    const onSubmit = (e: any) => {
         authLogin(e.login, e.password, e.rememberMe, e.captcha)
             .catch(
-                (response) => {
+                (response: any) => {
                     setMessageError(response)
                 }
             )
     }
 
 
-    const validate = (e) => {
-        const errors = {}
+    const validate = (e: any) => {
+        const errors: any = {}
         if (e.login && (e.login.length < 3 || e.login.length > 20)) {
             errors.login = 'login must be from 3 to 20 characters'
         }

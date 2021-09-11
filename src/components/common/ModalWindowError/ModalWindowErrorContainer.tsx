@@ -2,14 +2,20 @@ import { Component } from 'react';
 import ModalWindowError from './ModalWindowError';
 import { setGlobalError } from '../../../redux/profileReducer'
 import { connect } from 'react-redux';
+import { RootStore } from '../../../redux/storeRedux'
 
-class ModalWindowErrorContainer extends Component {
+type propsType = {
+    globalError: null | string
+    setGlobalError: any
+}
+
+class ModalWindowErrorContainer extends Component<propsType> {
     render() {
         return <ModalWindowError {...this.props} />
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootStore) => ({
     globalError: state.profilePage.globalError
 })
 

@@ -1,8 +1,14 @@
 import s from './Header.module.css'
 import { NavLink } from 'react-router-dom'
 import logo from '../../assets/images/logoAPP.png'
+import { FC } from 'react'
 
-const Header = ({ isAuth, login }) => {
+type propsType = {
+    isAuth: boolean
+    login: null | string
+}
+
+const Header: FC<propsType> = ({ isAuth, login }) => {
     return (
         <header className={s.header}>
             <NavLink to={'/main'}><img src={logo} alt='logo'></img></NavLink>

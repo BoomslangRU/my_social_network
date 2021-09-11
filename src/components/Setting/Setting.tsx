@@ -1,8 +1,13 @@
 import { NavLink } from 'react-router-dom'
 import s from './Setting.module.css'
 import logout_image from '../../assets/images/logout.png'
+import { FC } from 'react'
 
-const Setting = ({ logout }) => {
+type propsType = {
+    logout: any
+}
+
+const Setting: FC<propsType> = ({ logout }) => {
     const clickLogout = () => {
         logout()
     }
