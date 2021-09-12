@@ -33,4 +33,6 @@ const mapStateToProps = (state: RootStore): mapStateType => ({
 	users: state.usersPage.users
 })
 
-export default connect(mapStateToProps, { onAddPost })(MyPostsContainer)
+export default connect<mapStateType, mapDispatchType, null, RootStore>
+	(mapStateToProps, { onAddPost })
+	(MyPostsContainer)

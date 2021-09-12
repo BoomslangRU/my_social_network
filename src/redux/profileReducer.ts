@@ -1,5 +1,7 @@
+import { ThunkAction } from 'redux-thunk'
 import { ProfileAPI } from '../api/api'
 import { photosType, postsType, profileType } from '../types/types'
+import { RootStore } from './storeRedux'
 
 const ADD_POST = 'ADD_POST'
 const SET_USERS_PROFILE = 'profileReducer/SET_USERS_PROFILE'
@@ -21,7 +23,7 @@ const initialState = {
 
 export type initialStateType = typeof initialState
 
-const profileReducer = (state = initialState, action: any): initialStateType => {
+const profileReducer = (state = initialState, action: actionsTypes): initialStateType => {
 	switch (action.type) {
 		case ADD_POST:
 			let newPost = {
@@ -40,6 +42,7 @@ const profileReducer = (state = initialState, action: any): initialStateType => 
 		case SET_GLOBAL_ERROR:
 			return { ...state, globalError: action.error }
 		case SET_PHOTO_SUCCESS:
+			//@ts-ignore
 			return { ...state, profile: { ...state.profile, photos: action.photos.data.photos } as profileType }
 		case DELETE_POST:
 			return { ...state, posts: state.posts.filter(p => p.id !== action.postID) }
@@ -49,6 +52,9 @@ const profileReducer = (state = initialState, action: any): initialStateType => 
 }
 
 // Action Creators
+type actionsTypes = setTextStatusActionType | setUsersProfileActionType | setPhotoSuccessActionType
+	| setGlobalErrorActionType | onAddPostActionType | deletePostActionType
+
 type setTextStatusActionType = {
 	type: typeof SET_TEXT_STATUS
 	text: string
@@ -93,7 +99,9 @@ export const deletePost = (postID: number)
 
 
 // Thunk Creators
-export const getProfile = (userID: number) => async (dispatch: any) => {
+type thunkAction = ThunkAction<Promise<void>, RootStore, unknown, actionsTypes>
+
+export const getProfile = (userID: number): thunkAction => async (dispatch) => {
 	try {
 		const response = await ProfileAPI.getProfile(userID)
 		dispatch(setUsersProfile(response))
@@ -101,7 +109,7 @@ export const getProfile = (userID: number) => async (dispatch: any) => {
 		dispatch(setGlobalError(error.message))
 	}
 }
-export const getTextStatus = (userID: number) => async (dispatch: any) => {
+export const getTextStatus = (userID: number): thunkAction => async (dispatch) => {
 	try {
 		const response = await ProfileAPI.getUserStatus(userID)
 		dispatch(setTextStatus(response))
@@ -109,7 +117,7 @@ export const getTextStatus = (userID: number) => async (dispatch: any) => {
 		dispatch(setGlobalError(error.message))
 	}
 }
-export const updateTextStatus = (text: string) => async (dispatch: any) => {
+export const updateTextStatus = (text: string): thunkAction => async (dispatch) => {
 	try {
 		const response = await ProfileAPI.updateUserStatus(text)
 		if (response.resultCode === 0) {
@@ -119,7 +127,7 @@ export const updateTextStatus = (text: string) => async (dispatch: any) => {
 		dispatch(setGlobalError(error.message))
 	}
 }
-export const savePhoto = (filePhoto: any) => async (dispatch: any) => {
+export const savePhoto = (filePhoto: any): thunkAction => async (dispatch) => {
 	try {
 		const response = await ProfileAPI.savePhoto(filePhoto)
 		if (response.resultCode === 0) {
@@ -129,7 +137,7 @@ export const savePhoto = (filePhoto: any) => async (dispatch: any) => {
 		dispatch(setGlobalError(error.message))
 	}
 }
-export const saveProfile = (profile: any) => async (dispatch: any, getState: any) => {
+export const saveProfile = (profile: profileType): thunkAction => async (dispatch, getState: any) => {
 	try {
 		const userId = getState().auth.id
 		const response = await ProfileAPI.saveProfile(profile)
