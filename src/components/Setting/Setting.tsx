@@ -4,19 +4,19 @@ import logout_image from '../../assets/images/logout.png'
 import { FC } from 'react'
 
 type propsType = {
-    logout: any
+	logout: () => void
 }
 
 const Setting: FC<propsType> = ({ logout }) => {
-    const clickLogout = () => {
-        logout()
-    }
-    return (
-        <div className={s.singOut}>
-            <img alt='logout' src={logout_image}  ></img>
-            <NavLink onClick={clickLogout} to={'/login'}>Sing Out</NavLink>
-        </div>
-    )
+	const clickLogout = () => {
+		logout()
+	}
+	return (
+		<div className={s.singOut}>
+			<img alt='logout' src={logout_image}  ></img>
+			<NavLink onClick={clickLogout} to={'/login'}>Sing Out</NavLink>
+		</div>
+	)
 }
 
 export default Setting

@@ -5,10 +5,11 @@ import PostForm from './PostForm/PostForm'
 import Preloader from '../../common/Preloader/Preloader'
 import { postsType, profileType } from '../../../types/types'
 
+
 type propsType = {
-	profile: profileType
-	onAddPost: any
+	profile: profileType | null
 	posts: Array<postsType>
+	onAddPost: (newPostText: string) => void
 }
 
 // React.memo in this version it does not make sense
@@ -18,7 +19,6 @@ const MyPosts: FC<propsType> = memo(props => {
 	if (!props.profile) {
 		return <Preloader />
 	}
-
 	return (
 		<div className={s.item}>
 			<div className={s.postBlock}>
@@ -31,4 +31,3 @@ const MyPosts: FC<propsType> = memo(props => {
 })
 
 export default MyPosts
-

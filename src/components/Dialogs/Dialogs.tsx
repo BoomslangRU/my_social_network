@@ -6,25 +6,24 @@ import { FC } from 'react'
 import { initialStateDialogsPageType } from '../../redux/dialogsReducer'
 
 type propsType = {
-    sendMessage: any
-    dialogsPage: initialStateDialogsPageType
+	sendMessage: (massageBody: string) => void
+	dialogsPage: initialStateDialogsPageType
 }
 
 const Dialogs: FC<propsType> = ({ dialogsPage, sendMessage }) => {
-    const dialogsElements = dialogsPage.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id} />)
-    const messagesElements = dialogsPage.messages.map(m => <Message message={m.message} key={m.id} />)
-
-    return (
-        <div className={s.dialogs}>
-            <div className={s.dialogItem}>
-                {dialogsElements}
-            </div>
-            <div className={s.messages}>
-                {messagesElements}
-                <DialogForm sendMessage={sendMessage} />
-            </div>
-        </div>
-    )
+	return (
+		<div className={s.dialogs}>
+			<div className={s.dialogItem}>
+				{dialogsPage.dialogs.map(d =>
+					<DialogItem name={d.name} key={d.id} id={d.id} />)}
+			</div>
+			<div className={s.messages}>
+				{dialogsPage.messages.map(m =>
+					<Message message={m.message} key={m.id} />)}
+				<DialogForm sendMessage={sendMessage} />
+			</div>
+		</div>
+	)
 }
 
 export default Dialogs

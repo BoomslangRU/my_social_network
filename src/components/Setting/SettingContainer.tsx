@@ -7,24 +7,24 @@ import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import { RootStore } from '../../redux/storeRedux'
 
 type propsType = {
-    logout: any
+	logout: () => void
 }
 
 class SettingContainer extends Component<propsType> {
-    render() {
-        return (
-            <div>
-                <Setting logout={this.props.logout} />
-            </div>
-        )
-    }
+	render() {
+		return (
+			<div>
+				<Setting logout={this.props.logout} />
+			</div>
+		)
+	}
 }
 
 const mapStateToProps = (state: RootStore) => ({
-    isAuth: state.auth.isAuth
+	isAuth: state.auth.isAuth
 })
 
 export default compose(
-    withAuthRedirect,
-    connect(mapStateToProps, { logout })
+	withAuthRedirect,
+	connect(mapStateToProps, { logout })
 )(SettingContainer)

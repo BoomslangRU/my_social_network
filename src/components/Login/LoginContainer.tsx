@@ -4,23 +4,30 @@ import { authLogin } from '../../redux/authReducer'
 import { RootStore } from '../../redux/storeRedux'
 import Login from './Login'
 
-type propsType = {
-    isAuth: boolean
-    captcha: null | string
-    authLogin: any
+type propsType = mapStateType & mapDispatchType
+
+type mapDispatchType = {
+	authLogin: (email: string, password: string, rememberMe: boolean, captcha: string) => void
+}
+
+type mapStateType = {
+	isAuth: boolean
+	captcha: null | string
 }
 
 class LoginContainer extends Component<propsType> {
-    render() {
-        return (
-            <Login {...this.props} />
-        )
-    }
+	render() {
+		return (
+			<Login {...this.props} />
+		)
+	}
 }
-const mapStateToProps = (state: RootStore) => ({
-    isAuth: state.auth.isAuth,
-    captcha: state.auth.captchaUrlSuccess
+
+const mapStateToProps = (state: RootStore): mapStateType => ({
+	isAuth: state.auth.isAuth,
+	captcha: state.auth.captchaUrlSuccess
 })
 
-
-export default connect(mapStateToProps, { authLogin })(LoginContainer)
+export default connect<mapStateType, mapDispatchType, null, RootStore>
+	(mapStateToProps, { authLogin })
+	(LoginContainer)

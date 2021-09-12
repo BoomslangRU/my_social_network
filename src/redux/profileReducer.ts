@@ -15,8 +15,8 @@ const initialState = {
 		{ id: 2, message: 'It\'s my first post', likeCounter: 15 }
 	] as Array<postsType>,
 	profile: null as profileType | null,
-	usersStatus: '',
-	globalError: null
+	globalError: null as string | null,
+	usersStatus: ''
 }
 
 export type initialStateType = typeof initialState
@@ -72,9 +72,9 @@ const setPhotoSuccess = (photos: photosType)
 
 export type setGlobalErrorActionType = {
 	type: typeof SET_GLOBAL_ERROR
-	error: string
+	error: string | null
 }
-export const setGlobalError = (error: string)
+export const setGlobalError = (error: string | null)
 	: setGlobalErrorActionType => ({ type: SET_GLOBAL_ERROR, error })
 
 export type onAddPostActionType = {

@@ -8,58 +8,58 @@ import ProfileData from './ProfileData/ProfileData'
 import { useState } from 'react'
 import ProfileDataForm from './ProfileData/ProfileDataForm'
 
-const ProfileInfo = (props) => {
+const ProfileInfo = props => {
 
-    let [editMode, setEditMode] = useState(false)
+	const [editMode, setEditMode] = useState(false)
 
-    const onManePhotoSelected = (e) => {
-        if (e.target.files.length) {
-            props.savePhoto(e.target.files[0])
-        }
-    }
-    const goToEditMode = () => {
-        setEditMode(true)
-    }
-    const exitToEditMode = () => {
-        setEditMode(false)
-    }
+	const onManePhotoSelected = (e) => {
+		if (e.target.files.length) {
+			props.savePhoto(e.target.files[0])
+		}
+	}
+	const goToEditMode = () => {
+		setEditMode(true)
+	}
+	const exitToEditMode = () => {
+		setEditMode(false)
+	}
 
-    if (!props.profile) {
-        return <Preloader />
-    }
-    return (
-        <div className={s.profileItems}>
+	if (!props.profile) {
+		return <Preloader />
+	}
 
-            {/* image background profile  */}
-            <div className={s.item}>
-                <img src={background} alt='background'></img>
-            </div>
-            <div className={s.descriptionBlock} >
+	return (
+		<div className={s.profileItems}>
 
-                {/* image avatar profile */}
-                <img src={props.profile.photos.large ? props.profile.photos.large : userPhoto} alt='user photos' />
+			{/* image background profile  */}
+			<div className={s.item}>
+				<img src={background} alt='background'></img>
+			</div>
+			<div className={s.descriptionBlock} >
 
-                {/* input file for loading image avatar profile */}
-                <div className={s.ownerItem}>
-                    {!props.isOwner && <input className={styleInput} type={'file'} onChange={onManePhotoSelected} />}
-                </div>
+				{/* image avatar profile */}
+				<img src={props.profile.photos.large ? props.profile.photos.large : userPhoto} alt='user photos' />
 
-                {/* button for edit profile */}
-                <div className={styleButton.buttonBlock}>
-                    {!props.isOwner && <button onClick={goToEditMode}><span>edit profile</span></button>}
-                </div>
+				{/* input file for loading image avatar profile */}
+				<div className={s.ownerItem}>
+					{!props.isOwner && <input className={styleInput} type={'file'} onChange={onManePhotoSelected} />}
+				</div>
 
-            </div>
+				{/* button for edit profile */}
+				<div className={styleButton.buttonBlock}>
+					{!props.isOwner && <button onClick={goToEditMode}><span>edit profile</span></button>}
+				</div>
 
-            {/* edit mode */}
-            <div>
-                {editMode
-                    ? <ProfileDataForm {...props} exitToEditMode={exitToEditMode} />
-                    : <ProfileData {...props} />}
-            </div>
-        </div>
-    )
+			</div>
+
+			{/* edit mode */}
+			<div>
+				{editMode
+					? <ProfileDataForm {...props} exitToEditMode={exitToEditMode} />
+					: <ProfileData {...props} />}
+			</div>
+		</div>
+	)
 }
-
 
 export default ProfileInfo

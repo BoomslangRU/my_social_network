@@ -56,7 +56,7 @@ export const getAuthMe = () => async (dispatch: any) => {
 		dispatch(getCaptchaSuccess(null))
 	}
 }
-export const authLogin = (email: any, password: any, rememberMe: any, captcha: any) => async (dispatch: any) => {
+export const authLogin = (email: string, password: string, rememberMe: boolean, captcha: string) => async (dispatch: any) => {
 	const response = await authAPI.login(email, password, rememberMe, captcha)
 	if (response.resultCode === 0) {
 		dispatch(getAuthMe())
