@@ -7,7 +7,7 @@ import Login from './Login'
 type propsType = mapStateType & mapDispatchType
 
 type mapDispatchType = {
-	authLogin: (email: string, password: string, rememberMe: boolean, captcha: string) => void
+	authLogin: (email: string, password: string, rememberMe: boolean, captcha: boolean) => void
 }
 
 type mapStateType = {

@@ -11,7 +11,7 @@ type mapStateType = {
 	profile: profileType | null
 	posts: Array<postsType>
 	users: Array<usersType>
-	authorizedUserId: string | null
+	authorizedUserId: number | null
 }
 
 type mapDispatchType = {
