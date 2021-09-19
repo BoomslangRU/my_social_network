@@ -3,6 +3,7 @@ import { ProfileAPI } from '../api/api'
 import { photosType, postsType, profileType } from '../types/types'
 import { RootStore } from './storeRedux'
 
+
 const ADD_POST = 'ADD_POST'
 const SET_USERS_PROFILE = 'profileReducer/SET_USERS_PROFILE'
 const SET_TEXT_STATUS = 'profilePage/SET_TEXT_STATUS'
@@ -20,7 +21,6 @@ const initialState = {
 	globalError: null as string | null,
 	usersStatus: ''
 }
-
 export type initialStateType = typeof initialState
 
 const profileReducer = (state = initialState, action: actionsTypes): initialStateType => {

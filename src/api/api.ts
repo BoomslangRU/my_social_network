@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { profileType } from './../types/types'
+import { contactsType, photosType, profileType, usersType } from './../types/types'
 
 
 const instance = axios.create({
@@ -10,36 +10,49 @@ const instance = axios.create({
 	}
 })
 
+
+//enums
 export enum resultCodeEnum {
 	Success = 0,
 	Error = 1
 }
-
 export enum resultCodeForCaptcha {
 	CaptchaRequired = 10
 }
 
+
+// usersAPI
+type getUsersResponseType = {
+	items: Array<usersType>
+	totalCount: number
+	error: string
+}
+type followUsersResponseType = {
+	resultCode: resultCodeEnum
+	messages: Array<string>
+	data: object[]
+}
+type unfollowUsersResponseType = {
+	resultCode: resultCodeEnum
+	messages: Array<string>
+	data: object[]
+}
+
 export const usersAPI = {
 	getUsers(pageNumber: number, pageSize: number) {
-		return instance.get(`users?page=${pageNumber}&count=${pageSize}`)
+		return instance.get<getUsersResponseType>(`users?page=${pageNumber}&count=${pageSize}`)
 			.then(response => {
 				return response.data
 			})
 	},
 	followUsers(id: number) {
-		return instance.delete(`follow/${id}`)
+		return instance.delete<followUsersResponseType>(`follow/${id}`)
 			.then(response => {
 				return response.data
 			})
 	},
 	unfollowUsers(id: number) {
-		return instance.post(`follow/${id}`, {},)
-			.then(response => {
-				return response.data
-			})
-	},
-	getProfile(id: number) {
-		return instance.get(`profile/${id}`)
+		return instance.post<unfollowUsersResponseType>(`follow/${id}`, {},)
 			.then(response => {
 				return response.data
 			})
@@ -47,9 +60,29 @@ export const usersAPI = {
 }
 
 
+// ProfileAPI
+type getProfileResponseType = {
+	userId: number
+	lookingForAJob: boolean
+	lookingForAJobDescription: string
+	fullName: string
+	contacts: contactsType
+	photos: photosType
+}
+type updateUserStatusResponseType = {
+	resultCode: resultCodeEnum
+	messages: Array<string>
+	data: object[]
+}
+type saveProfileResponseType = {
+	resultCode: resultCodeEnum
+	messages: Array<string>
+	data: object[]
+}
+
 export const ProfileAPI = {
 	getProfile(id: number) {
-		return instance.get(`profile/${id}`)
+		return instance.get<getProfileResponseType>(`profile/${id}`)
 			.then(response => {
 				return response.data
 			})
@@ -61,7 +94,7 @@ export const ProfileAPI = {
 			})
 	},
 	updateUserStatus(textStatus: string) {
-		return instance.put(`profile/status`, { status: textStatus })
+		return instance.put<updateUserStatusResponseType>(`profile/status`, { status: textStatus })
 			.then(response => {
 				return response.data
 			})
@@ -79,7 +112,7 @@ export const ProfileAPI = {
 			})
 	},
 	saveProfile(profile: profileType) {
-		return instance.put(`profile`, profile)
+		return instance.put<saveProfileResponseType>(`profile`, profile)
 			.then(response => {
 				return response.data
 			})
@@ -87,6 +120,7 @@ export const ProfileAPI = {
 }
 
 
+// authAPI
 type meResponseType = {
 	data: {
 		id: number
