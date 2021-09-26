@@ -4,7 +4,13 @@ import { Redirect } from 'react-router-dom'
 import s from './Login.module.css'
 
 type propsType = {
-	authLogin: any
+	authLogin: (
+		email: string,
+		password: string,
+		rememberMe: boolean,
+		captcha: boolean
+	) => Promise<void>
+
 	isAuth: boolean
 	captcha: null | string
 }
@@ -13,25 +19,33 @@ const Login: FC<propsType> = ({ authLogin, isAuth, captcha }) => {
 
 	const [messageError, setMessageError] = useState<string | null>(null)
 
-	const onSubmit = (e: any) => {
-		authLogin(e.login, e.password, e.rememberMe, e.captcha)
+	type eventValueType = {
+		email: string
+		password: string
+		rememberMe: boolean
+		captcha: boolean
+	}
+
+	const onSubmit = async (e: eventValueType) => {
+		await authLogin(e.email, e.password, e.rememberMe, e.captcha)
 			.catch(
-				(response: any) => {
+				(response: string) => {
 					setMessageError(response)
 				}
 			)
 	}
 
+
 	const validate = (e: any) => {
 		const errors: any = {}
-		if (e.login && (e.login.length < 3 || e.login.length > 20)) {
-			errors.login = 'login must be from 3 to 20 characters'
+		if (e.email && (e.email.length < 3 || e.email.length > 20)) {
+			errors.email = 'login must be from 3 to 20 characters'
 		}
 		if (e.password && (e.password.length < 4 || e.password.length > 12)) {
 			errors.password = 'password must be from 8 to 12 characters'
 		}
-		if (!e.login) {
-			errors.login = 'Required'
+		if (!e.email) {
+			errors.email = 'Required'
 		}
 		if (!e.password) {
 			errors.password = 'Required'
@@ -54,7 +68,7 @@ const Login: FC<propsType> = ({ authLogin, isAuth, captcha }) => {
 
 						{/* Input login */}
 						<div className={s.formRow}>
-							<Field name='login'
+							<Field name='email'
 								render={({ input, meta }) => (
 									<div>
 										<input {...input} type='text' placeholder='Login' />

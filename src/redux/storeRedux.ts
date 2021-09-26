@@ -6,6 +6,7 @@ import usersReducer from './usersReducer'
 import thunkMiddleware from 'redux-thunk'
 import appReducer from './appReducer'
 
+
 const reducers = combineReducers({
 	app: appReducer,
 	profilePage: profileReducer,
@@ -16,6 +17,9 @@ const reducers = combineReducers({
 
 type reducersType = typeof reducers
 export type RootStore = ReturnType<reducersType>
+
+type propertiesTypes<T> = T extends { [key: string]: infer U } ? U : never
+export type inferActionsTypes<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<propertiesTypes<T>>
 
 
 //@ts-ignore

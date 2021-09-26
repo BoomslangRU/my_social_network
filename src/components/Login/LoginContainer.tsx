@@ -7,7 +7,12 @@ import Login from './Login'
 type propsType = mapStateType & mapDispatchType
 
 type mapDispatchType = {
-	authLogin: (email: string, password: string, rememberMe: boolean, captcha: boolean) => void
+	authLogin: (
+		email: string,
+		password: string,
+		rememberMe: boolean,
+		captcha: boolean
+	) => Promise<void>
 }
 
 type mapStateType = {
@@ -29,5 +34,7 @@ const mapStateToProps = (state: RootStore): mapStateType => ({
 })
 
 export default connect<mapStateType, mapDispatchType, null, RootStore>
-	(mapStateToProps, { authLogin })
+	(mapStateToProps,
+		// @ts-ignore
+		{ authLogin })
 	(LoginContainer)

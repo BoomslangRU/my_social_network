@@ -3,6 +3,7 @@ import { usersType } from '../../types/types'
 import Pagination from '../common/Pagination/Pagination'
 import User from './User'
 
+
 type propsType = {
 	users: Array<usersType>
 	totalUsersCount: number
@@ -18,7 +19,8 @@ type propsType = {
 const Users: FC<propsType> = props => {
 	return (
 		<Fragment>
-			<Pagination setCurrentPage={props.setCurrentPage}
+			<Pagination
+				setCurrentPage={props.setCurrentPage}
 				totalUsersCount={props.totalUsersCount}
 				pageSize={props.pageSize}
 				currentPage={props.currentPage}

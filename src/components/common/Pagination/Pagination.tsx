@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 import s from './Pagination.module.css'
 
+
 type propsType = {
 	totalUsersCount: number
 	pageSize: number
