@@ -1,6 +1,6 @@
 import { resultCodeEnum, resultCodeForCaptcha } from './../api/api';
 import { ThunkAction } from 'redux-thunk'
-import { authAPI } from '../api/api'
+import { authAPI } from '../api/authAPI'
 import { RootStore } from './storeRedux'
 
 

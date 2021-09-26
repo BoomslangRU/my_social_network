@@ -1,5 +1,6 @@
 import { ThunkAction } from 'redux-thunk'
-import { ProfileAPI } from '../api/api'
+import { resultCodeEnum } from '../api/api'
+import { ProfileAPI } from '../api/profileAPI'
 import { photosType, postsType, profileType } from '../types/types'
 import { RootStore } from './storeRedux'
 
@@ -120,7 +121,7 @@ export const getTextStatus = (userID: number): thunkAction => async (dispatch) =
 export const updateTextStatus = (text: string): thunkAction => async (dispatch) => {
 	try {
 		const response = await ProfileAPI.updateUserStatus(text)
-		if (response.resultCode === 0) {
+		if (response.resultCode === resultCodeEnum.Success) {
 			dispatch(setTextStatus(text))
 		}
 	} catch (error: any) {
@@ -130,8 +131,8 @@ export const updateTextStatus = (text: string): thunkAction => async (dispatch) 
 export const savePhoto = (filePhoto: any): thunkAction => async (dispatch) => {
 	try {
 		const response = await ProfileAPI.savePhoto(filePhoto)
-		if (response.resultCode === 0) {
-			dispatch(setPhotoSuccess(response))
+		if (response.resultCode === resultCodeEnum.Success) {
+			dispatch(setPhotoSuccess(response.data))
 		}
 	} catch (error: any) {
 		dispatch(setGlobalError(error.message))
@@ -141,7 +142,7 @@ export const saveProfile = (profile: profileType): thunkAction => async (dispatc
 	try {
 		const userId = getState().auth.id
 		const response = await ProfileAPI.saveProfile(profile)
-		if (response.resultCode === 0) {
+		if (response.resultCode === resultCodeEnum.Success) {
 			dispatch(getProfile(userId))
 		} else {
 			return Promise.reject(response.messages[0])
