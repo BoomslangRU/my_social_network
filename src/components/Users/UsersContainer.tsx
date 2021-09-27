@@ -35,7 +35,6 @@ class UsersComponent extends Component<propsType> {
 		this.props.requestUsers(currentPage, pageSize)
 	}
 	onPageChanged: (pageNumber: number) => void = (pageNumber: number) => {
-		debugger
 		const { pageSize } = this.props
 		this.props.requestUsers(pageNumber, pageSize)
 		setCurrentPage(pageNumber)

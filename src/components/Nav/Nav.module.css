@@ -1,14 +1,22 @@
 .nav {
     grid-area: nav;
-    background-color: rgb(39, 240, 173);
+    background: rgb(124,185,232);
+    background: linear-gradient(0deg, rgba(124,185,232,0.5746673669467788) 15%, rgba(41,171,135,1) 83%);
     padding: 20px;
-  }
+    box-shadow: 0 4px 8px 0 rgba(9, 114, 109, 0.3), 0 6px 20px 0 rgba(33, 100, 89, 0.29);
+}
+.nav:hover {
+  transition: 0.5s;
 
+  -webkit-transform: scale(1.01);
+  -moz-transform: scale(1.01);
+  -o-transform: scale(1.01);
+   transform: scale(1.01);
+}
 .item a {
   color: rgb(21, 78, 75);
   text-decoration: none;
 }
-
 .item a.activeLink {
   color: rgb(77, 153, 153);
   font-size: 1.2em;

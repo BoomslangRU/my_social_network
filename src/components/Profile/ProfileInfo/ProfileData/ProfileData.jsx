@@ -21,8 +21,8 @@ const ProfileInfo = props => {
 			<div className={s.fullName}>{props.profile.fullName}
 				{/* image job search status */}
 				<img src={props.profile.lookingForAJob ? notJob : job}
-					alt='status looking for work'
-					title={props.profile.lookingForAJob ? 'looking for work' : 'not looking for work'} />
+					alt='status looking for job'
+					title={props.profile.lookingForAJob ? 'looking for job' : 'not looking for job'} />
 			</div>
 
 			<ProfileStatus {...props} />

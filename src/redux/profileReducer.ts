@@ -27,7 +27,7 @@ export type initialStateType = typeof initialState
 const profileReducer = (state = initialState, action: actionsTypes): initialStateType => {
 	switch (action.type) {
 		case ADD_POST:
-			let newPost = {
+			const newPost = {
 				id: 5,
 				message: action.postText,
 				likeCounter: 0
@@ -43,8 +43,8 @@ const profileReducer = (state = initialState, action: actionsTypes): initialStat
 		case SET_GLOBAL_ERROR:
 			return { ...state, globalError: action.error }
 		case SET_PHOTO_SUCCESS:
-			//@ts-ignore
-			return { ...state, profile: { ...state.profile, photos: action.photos.data.photos } as profileType }
+			debugger
+			return { ...state, profile: { ...state.profile, photos: action.photos } as profileType }
 		case DELETE_POST:
 			return { ...state, posts: state.posts.filter(p => p.id !== action.postID) }
 		default:
@@ -104,24 +104,24 @@ type thunkAction = ThunkAction<Promise<void>, RootStore, unknown, actionsTypes>
 
 export const getProfile = (userID: number): thunkAction => async (dispatch) => {
 	try {
-		const response = await ProfileAPI.getProfile(userID)
-		dispatch(setUsersProfile(response))
+		const data = await ProfileAPI.getProfile(userID)
+		dispatch(setUsersProfile(data))
 	} catch (error: any) {
 		dispatch(setGlobalError(error.message))
 	}
 }
 export const getTextStatus = (userID: number): thunkAction => async (dispatch) => {
 	try {
-		const response = await ProfileAPI.getUserStatus(userID)
-		dispatch(setTextStatus(response))
+		const data = await ProfileAPI.getUserStatus(userID)
+		dispatch(setTextStatus(data))
 	} catch (error: any) {
 		dispatch(setGlobalError(error.message))
 	}
 }
 export const updateTextStatus = (text: string): thunkAction => async (dispatch) => {
 	try {
-		const response = await ProfileAPI.updateUserStatus(text)
-		if (response.resultCode === resultCodeEnum.Success) {
+		const data = await ProfileAPI.updateUserStatus(text)
+		if (data.resultCode === resultCodeEnum.Success) {
 			dispatch(setTextStatus(text))
 		}
 	} catch (error: any) {
@@ -130,9 +130,9 @@ export const updateTextStatus = (text: string): thunkAction => async (dispatch) 
 }
 export const savePhoto = (filePhoto: any): thunkAction => async (dispatch) => {
 	try {
-		const response = await ProfileAPI.savePhoto(filePhoto)
-		if (response.resultCode === resultCodeEnum.Success) {
-			dispatch(setPhotoSuccess(response.data))
+		const data = await ProfileAPI.savePhoto(filePhoto)
+		if (data.resultCode === resultCodeEnum.Success) {
+			dispatch(setPhotoSuccess(data.data.photos))
 		}
 	} catch (error: any) {
 		dispatch(setGlobalError(error.message))
@@ -141,11 +141,11 @@ export const savePhoto = (filePhoto: any): thunkAction => async (dispatch) => {
 export const saveProfile = (profile: profileType): thunkAction => async (dispatch, getState: any) => {
 	try {
 		const userId = getState().auth.id
-		const response = await ProfileAPI.saveProfile(profile)
-		if (response.resultCode === resultCodeEnum.Success) {
+		const data = await ProfileAPI.saveProfile(profile)
+		if (data.resultCode === resultCodeEnum.Success) {
 			dispatch(getProfile(userId))
 		} else {
-			return Promise.reject(response.messages[0])
+			return Promise.reject(data.messages[0])
 		}
 	} catch (error: any) {
 		dispatch(setGlobalError(error.message))

@@ -56,9 +56,9 @@ const getCaptchaSuccess = (captchaUrl: null | string)
 type thunkAction = ThunkAction<Promise<void>, RootStore, unknown, actionsTypes>
 
 export const getAuthMe = (): thunkAction => async (dispatch) => {
-	const response = await authAPI.me()
-	if (response.resultCode === resultCodeEnum.Success) {
-		let { id, login, email } = response.data
+	const data = await authAPI.me()
+	if (data.resultCode === resultCodeEnum.Success) {
+		let { id, login, email } = data.data
 		dispatch(setAuthUserData(id, login, email, true))
 		dispatch(getCaptchaSuccess(null))
 	}

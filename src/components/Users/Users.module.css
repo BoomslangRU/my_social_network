@@ -5,44 +5,44 @@
     'avatar info location';
     gap: 10px;
     color: rgb(21, 78, 75);
-    background-color: rgb(101, 192, 196);
+    background: rgb(101, 192, 196);
     margin-bottom: 7px;
     border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(9, 114, 109, 0.3), 0 6px 20px 0 rgba(33, 100, 89, 0.29);
 }
-
+.usersItem:hover {
+    transition: 0.5s;
+    -webkit-transform: scale(1.03);
+    -moz-transform: scale(1.03);
+    -o-transform: scale(1.03);
+    transform: scale(1.03);
+}
 .avatarItem {
     grid-area: avatar;
     padding-bottom: 10px;
 }
-
 .infoItem {
     grid-area: info;
     margin-left: 50px;
 }
-
 .locationItem {
     grid-area: location;
     padding-top: 10px;
 }
-
 .name {
     font-size: 1.4em;
     padding-top: 40px;
 }
-
 .image {
     width: 100px;
     height: 130px;
     border-radius: 10px;
 }
-
 .buttonItem {
     text-align: center;
 }
-
 .button_follow {
     background-color: rgb(231, 108, 108);
     color: lightcyan;
     opacity: 0.8;
-    /* cursor: not-allowed; */
 }
